@@ -1,0 +1,133 @@
+.center {
+    text-align: center;
+}
+
+html, body {
+    height: 100%;
+    margin:0;
+    overscroll-behavior: none;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+#h1 {
+  display: block;
+  padding: 16px 20px;
+  font-size: 1.6rem;
+  background-color: #000;
+  color: #fff;
+  margin: 0;
+  text-shadow: none;
+  box-shadow: none;
+  font-weight: 600;
+}
+
+@keyframes slide {
+    from { background-position: 0 0; }
+    to { background-position: -400px 0; }
+}
+
+#score_container_main{
+  padding: 3%;
+}
+
+#game_cards_container{
+  padding: 3%;
+  text-align: center;
+}
+
+.questionbutton{
+  border: 1px solid #c3c3c3;
+  padding: 5px;
+  height: 100%;
+}
+
+#game_cards_container div div{
+  text-align: center;
+}
+
+.categoryHeader{
+  border: 1px solid #c3c3c3;
+  padding: 5px;
+}
+
+.questionRow{
+  height: 130px;
+}
+
+.question-row-small {
+  height: 80px;
+}
+
+.player-col {
+  width: 50%;
+  text-align: center;
+}
+
+.player-col.left { 
+  float: left; 
+}
+
+.player-col.right { 
+  float: right; 
+}
+
+.player-col.huge { 
+  font-size: 35px; 
+}
+
+.player-col.large { 
+  font-size: 30px; 
+}
+
+.category-inner {
+  line-height: 70px;
+  font-size: 35px;
+  font-family: 'Comic Sans', sans-serif;
+}
+
+#submitbutton {
+  border: 1px solid #c3c3c3;
+}
+
+body div div button{
+  font-size: 30px;
+  font-family: 'Comic Sans', sans-serif;
+  /* background-image: url("../images/buttonbackground.png"); */
+}
+
+.about-container { 
+  max-width: 900px;
+  margin: 24px auto; 
+  padding: 18px; 
+}
+
+.feature-list li { 
+  margin-bottom: 8px; 
+}
+
+.start-btn { 
+  margin-top: 16px; 
+}
+
+.site-footer {
+  padding: 16px 0;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.has-highlight { 
+  background: lightblue; 
+}
+
+.score-highlight { 
+  background: lightblue; 
+}

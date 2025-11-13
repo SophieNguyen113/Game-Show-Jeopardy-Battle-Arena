@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Game Show: Jeopardy! Battle Arena - Game Start</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" crossorigin="anonymous">
+    <link href="../styles/style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <header>
+        <h1 class="center" id="h1">Game Show: Jeopardy! Battle Arena</h1>
+    </header>
+
+    <div id="score_container_main">
+        <div>
+            <div class="player-col left huge {{PLAYER1_HEADER_CLASS}}"><img src="../images/player.png" width="50px" height = "50px"/>Player 1</div>
+            <div class="player-col right huge {{PLAYER2_HEADER_CLASS}}"><img src="../images/player.png" width="50px" height = "50px"/>{{PLAYER2_NAME}}</div>
+        </div>
+        <div>
+            <div class="player-col left large {{PLAYER1_SCORE_CLASS}}">{{PLAYER1_SCORE}}</div>
+            <div class="player-col right large {{PLAYER2_SCORE_CLASS}}">{{PLAYER2_SCORE}}</div>
+        </div>
+    </div>
+
+    <br/>
+
+    <form action="../server/questionPage.php" method="post">
+        <div id = "game_cards_container">
+            <div class = "row questionRow question-row-small">
+                <div class = "col-sm categoryHeader"> <div class="category-inner"><b><i>Dengue</i></b></div></div>
+                <div class = "col-sm categoryHeader"> <div class="category-inner"><b><i>Malaria</i></b></div></div>
+                <div class = "col-sm categoryHeader"> <div class="category-inner"><b><i>Chicken Pox</i></b></div></div>
+                <div class = "col-sm categoryHeader"> <div class="category-inner"><b><i>Polio</i></b></div></div>
+                <div class = "col-sm categoryHeader"> <div class="category-inner"><b><i>Cancer</i></b></div></div>
+            </div>
+
+            <div class = "row questionRow">
+                {{BTN_firstfirst}}{{BTN_firstsecond}}{{BTN_firstthird}}{{BTN_firstfourth}}{{BTN_firstfifth}}
+            </div>
+
+            <div class = "row questionRow">
+                {{BTN_secondfirst}}{{BTN_secondsecond}}{{BTN_secondthird}}{{BTN_secondfourth}}{{BTN_secondfifth}}
+            </div>
+
+            <div class = "row questionRow">
+                {{BTN_thirdfirst}}{{BTN_thirdsecond}}{{BTN_thirdthird}}{{BTN_thirdfourth}}{{BTN_thirdfifth}}
+            </div>
+
+            <div class = "row questionRow">
+                {{BTN_fourthfirst}}{{BTN_fourthsecond}}{{BTN_fourththird}}{{BTN_fourthfourth}}{{BTN_fourthfifth}}
+            </div>
+
+            <div class = "row questionRow">
+                {{BTN_fifthfirst}}{{BTN_fifthsecond}}{{BTN_fifththird}}{{BTN_fifthfourth}}{{BTN_fifthfifth}}
+            </div>
+        </div>
+    </form>
+
+    <div class="text-center start-btn">
+        <a class="btn btn-lg btn-primary" href="../server/restartGame.php">Restart Game</a>
+    </div>
+</body>
+</html>
