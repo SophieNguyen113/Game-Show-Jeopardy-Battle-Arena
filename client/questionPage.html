@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Game Show: Jeopardy! Battle Arena - Question Page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link href="../styles/style.css" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h1 class="center" id="h1">Game Show: Jeopardy! Battle Arena</h1>
+    </header>
+
+    <main class="about-container">
+        <div id="score_container_main">
+            <div>
+                <?php if ($player1turn) { ?>
+                    <div style="float:left;width:50%;text-align:center;font-size:35px;background:lightblue;">
+                        <img src="../images/player.png" width="50" height="50">Player 1
+                    </div>
+                    <div style="float:right;width:50%;text-align:center;font-size:35px;">
+                        <img src="../images/player.png" width="50" height="50">
+                        <?= $_COOKIE["user_name"] ?? "Player 2" ?>
+                    </div>
+                <?php } else { ?>
+                    <div style="float:left;width:50%;text-align:center;font-size:35px;">
+                        <img src="../images/player.png" width="50" height="50">Player 1
+                    </div>
+                    <div style="float:right;width:50%;text-align:center;font-size:35px;background:lightblue;">
+                        <img src="../images/player.png" width="50" height="50">
+                        <?= $_COOKIE["user_name"] ?? "Player 2" ?>
+                    </div>
+                <?php } ?>
+            </div>
+
+            <div>
+                <?php if ($player1turn) { ?>
+                    <div style="float:left;width:50%;text-align:center;font-size:30px;background:lightblue;">
+                        <?= $player1Score ?>
+                    </div>
+                    <div style="float:right;width:50%;text-align:center;font-size:30px;">
+                        <?= $player2Score ?>
+                    </div>
+                <?php } else { ?>
+                    <div style="float:left;width:50%;text-align:center;font-size:30px;">
+                        <?= $player1Score ?>
+                    </div>
+                    <div style="float:right;width:50%;text-align:center;font-size:30px;background:lightblue;">
+                        <?= $player2Score ?>
+                    </div>
+                <?php } ?>
+            </div>
+        </div>
+
+        <br>
+
+        <form action="../server/index.php" method="post">
+            <div style="text-align:center;">
+                <h2><?= $data["question"] ?></h2>
+
+                <input type="radio" name="selectedAnswer" value="firstOption">
+                <label><?= $data["firstOption"] ?></label><br>
+
+                <input type="radio" name="selectedAnswer" value="secondOption">
+                <label><?= $data["secondOption"] ?></label><br>
+
+                <input type="submit" name="answerButton" value="Submit Answer">
+
+                <input type="hidden" name="correctAnswer" value="<?= $data["correctAnswer"] ?>">
+                <input type="hidden" name="questionScore" value="<?= $data["questionScore"] ?>">
+                <input type="hidden" name="player1turn" value="<?= $player1turn ?>">
+            </div>
+        </form>
+    </main>
+
+    <footer class="text-center site-footer">
+        <div id="copyright">
+            <p id="htmlvalidator">
+                <a href="http://validator.w3.org/check/referer"
+                ><img
+                    src="../images/validatedHTML.png"
+                    alt="Valid XHTML 1.0!"
+                    height="31"
+                    width="88"
+                /></a>
+            </p>
+            <p id="cssvalidator">
+                <a href="http://jigsaw.w3.org/css-validator/check/referer">
+                <img
+                    style="border: 0; width: 88px; height: 31px"
+                    src="../images/validatedCSS.png"
+                    alt="Valid CSS!"
+                />
+                </a>
+            </p>
+
+            <p>Copyright &copy; Fall 2025</p>
+            <p>Georgia State University - Web Programming</p>
+            <p>Sophie Nguyen - Cristofer Herrera-Mejia - Karni Rathod</p>
+        </div>
+    </footer>
+</body>
+</html>
