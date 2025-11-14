@@ -210,7 +210,7 @@ if (isset($_POST["firstfirst"])) {
 
 } elseif (isset($_POST["firstfourth"])) {
     $data = setQuestion4(
-        "What does CPU stand for?",
+        "What does CPU of computers stand for?",
         "firstOption",
         "Central Processing Unit",
         "Core Power Unit",
@@ -222,7 +222,7 @@ if (isset($_POST["firstfirst"])) {
 
 } elseif (isset($_POST["secondfourth"])) {
     $data = setQuestion4(
-        "Which company created the iPhone?",
+        "Which famous company created the iPhone?",
         "secondOption",
         "Samsung",
         "Apple",
@@ -234,7 +234,7 @@ if (isset($_POST["firstfirst"])) {
 
 } elseif (isset($_POST["thirdfourth"])) {
     $data = setQuestion4(
-        "What does HTML stand for?",
+        "What does HTML on coding language stand for?",
         "secondOption",
         "Hyper Trainer Markup Language",
         "Hyper Text Markup Language",
@@ -282,7 +282,7 @@ if (isset($_POST["firstfirst"])) {
 
 } elseif (isset($_POST["secondfifth"])) {
     $data = setQuestion4(
-        "Which movie has 'I'll be back'?",
+        "Which movie has famous quote 'I'll be back'?",
         "secondOption",
         "Rocky",
         "Terminator",
@@ -294,7 +294,7 @@ if (isset($_POST["firstfirst"])) {
 
 } elseif (isset($_POST["thirdfifth"])) {
     $data = setQuestion4(
-        "Who directed Inception?",
+        "Who directed Inception, a science fiction action film?",
         "thirdOption",
         "Steven Spielberg",
         "James Cameron",
@@ -306,7 +306,7 @@ if (isset($_POST["firstfirst"])) {
 
 } elseif (isset($_POST["fourthfifth"])) {
     $data = setQuestion4(
-        "Highest-grossing movie of all time?",
+        "What is the highest-grossing movie of all time?",
         "secondOption",
         "Avengers: Endgame",
         "Avatar",
@@ -318,7 +318,7 @@ if (isset($_POST["firstfirst"])) {
 
 } elseif (isset($_POST["fifthfifth"])) {
     $data = setQuestion4(
-        "Who is the 'Queen of Pop'?",
+        "Who is the well-known 'Queen of Pop'?",
         "secondOption",
         "Taylor Swift",
         "Madonna",

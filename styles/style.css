@@ -37,7 +37,7 @@ main {
 }
 
 #score_container_main{
-  padding: 10%;
+  padding: 2%;
 }
 
 #game_cards_container{
@@ -53,6 +53,7 @@ main {
 
 #game_cards_container div div{
   text-align: center;
+  background: linear-gradient(180deg, #ffffff, lightblue);
 }
 
 .categoryHeader{
@@ -147,4 +148,57 @@ body div div button{
     display: inline-block;
     margin: 0 10px;
     margin-bottom: 10px;
+}
+
+.question-box {
+  padding: 50px;
+  max-width: 1000px;
+  margin: 24px auto;
+}
+
+.question-box h2 {
+  color: #0f4ea8;
+  font-size: 1.6rem;
+  margin: 24px;
+}
+
+.answer-option {
+  display: block;
+  cursor: pointer;
+  margin: 8px 0;
+  padding: 10px 12px;
+  background: #fff;
+  transition: all 150ms ease;
+  align-items: center;
+  border-radius: 24px;
+}
+
+.answer-option:hover {
+  background: lightblue;
+}
+
+.answer-option input[type="radio"] {
+  margin-right: 12px;
+  transform: scale(1.05);
+}
+
+.answer-option input[type="radio"]:checked + .answer-text {
+  font-weight: 600;
+  color: #0f4ea8;
+}
+
+.submit-btn {
+  display: inline-block;
+  margin-top: 14px;
+  padding: 10px 18px;
+  background: #538bda;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 24px;
+  border: 1px solid #3572b0;
+}
+
+.submit-btn:hover {
+  background: #0b3e83;
 }
