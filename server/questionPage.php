@@ -39,7 +39,8 @@ if (isset($_POST["firstfirst"])) {
         10, 
         "firstfirst"
     );
-} elseif (isset($_POST["firstsecond"])) {
+
+} elseif (isset($_POST["secondfirst"])) {
     $data = setQuestion4(
         "Which galaxy do we live in?",
         "thirdOption",
@@ -48,10 +49,10 @@ if (isset($_POST["firstfirst"])) {
         "Milky Way",
         "Sombrero",
         20,
-        "firstsecond"
+        "secondfirst"
     );
 
-} elseif (isset($_POST["firstthird"])) {
+} elseif (isset($_POST["thirdfirst"])) {
     $data = setQuestion4(
         "What is the largest type of star?",
         "thirdOption",
@@ -60,10 +61,10 @@ if (isset($_POST["firstfirst"])) {
         "Red dwarf",
         "Red supergiant",
         30,
-        "firstthird"
+        "thirdfirst"
     );
 
-} elseif (isset($_POST["firstfourth"])) {
+} elseif (isset($_POST["fourthfirst"])) {
     $data = setQuestion4(
         "Which black hole was photographed in 2019?",
         "thirdOption",
@@ -72,10 +73,10 @@ if (isset($_POST["firstfirst"])) {
         "M87*",
         "V404 Cygni",
         40,
-        "firstfourth"
+        "fourthfirst"
     );
 
-} elseif (isset($_POST["firstfifth"])) {
+} elseif (isset($_POST["fifthfirst"])) {
     $data = setQuestion4(
         "What force keeps planets in orbit?",
         "secondOption",
@@ -84,10 +85,10 @@ if (isset($_POST["firstfirst"])) {
         "Solar wind",
         "Radiation",
         50,
-        "firstfifth"
+        "fifthfirst"
     );
 
-} elseif (isset($_POST["secondfirst"])) {
+} elseif (isset($_POST["firstsecond"])) {
     $data = setQuestion4(
         "What is the strongest muscle by weight?",
         "secondOption",
@@ -96,7 +97,7 @@ if (isset($_POST["firstfirst"])) {
         "Gluteus maximus",
         "Bicep",
         10,
-        "secondfirst"
+        "firstsecond"
     );
 
 } elseif (isset($_POST["secondsecond"])) {
@@ -111,7 +112,7 @@ if (isset($_POST["firstfirst"])) {
         "secondsecond"
     );
 
-} elseif (isset($_POST["secondthird"])) {
+} elseif (isset($_POST["thirdsecond"])) {
     $data = setQuestion4(
         "Which organ produces insulin?",
         "secondOption",
@@ -120,10 +121,10 @@ if (isset($_POST["firstfirst"])) {
         "Kidney",
         "Stomach",
         30,
-        "secondthird"
+        "thirdsecond"
     );
 
-} elseif (isset($_POST["secondfourth"])) {
+} elseif (isset($_POST["fourthsecond"])) {
     $data = setQuestion4(
         "What blood type is the universal donor?",
         "thirdOption",
@@ -132,10 +133,10 @@ if (isset($_POST["firstfirst"])) {
         "O-",
         "B+",
         40,
-        "secondfourth"
+        "fourthsecond"
     );
 
-} elseif (isset($_POST["secondfifth"])) {
+} elseif (isset($_POST["fifthsecond"])) {
     $data = setQuestion4(
         "Which vitamin comes from sunlight?",
         "fourthOption",
@@ -144,10 +145,10 @@ if (isset($_POST["firstfirst"])) {
         "Vitamin C",
         "Vitamin D",
         50,
-        "secondfifth"
+        "fifthsecond"
     );
 
-} elseif (isset($_POST["thirdfirst"])) {
+} elseif (isset($_POST["firstthird"])) {
     $data = setQuestion4(
         "What is the largest continent?",
         "secondOption",
@@ -156,10 +157,10 @@ if (isset($_POST["firstfirst"])) {
         "Europe",
         "North America",
         10,
-        "thirdfirst"
+        "firstthird"
     );
 
-} elseif (isset($_POST["thirdsecond"])) {
+} elseif (isset($_POST["secondthird"])) {
     $data = setQuestion4(
         "What is the capital of Australia?",
         "secondOption",
@@ -168,7 +169,7 @@ if (isset($_POST["firstfirst"])) {
         "Melbourne",
         "Perth",
         20,
-        "thirdsecond"
+        "secondthird"
     );
 
 } elseif (isset($_POST["thirdthird"])) {
@@ -183,7 +184,7 @@ if (isset($_POST["firstfirst"])) {
         "thirdthird"
     );
 
-} elseif (isset($_POST["thirdfourth"])) {
+} elseif (isset($_POST["fourththird"])) {
     $data = setQuestion4(
         "What is the longest river in the world?",
         "firstOption",
@@ -192,10 +193,10 @@ if (isset($_POST["firstfirst"])) {
         "Yangtze",
         "Mississippi",
         40,
-        "thirdfourth"
+        "fourththird"
     );
 
-} elseif (isset($_POST["thirdfifth"])) {
+} elseif (isset($_POST["fifththird"])) {
     $data = setQuestion4(
         "Which country is landlocked?",
         "fourthOption",
@@ -204,10 +205,10 @@ if (isset($_POST["firstfirst"])) {
         "Malaysia",
         "Bolivia",
         50,
-        "thirdfifth"
+        "fifththird"
     );
 
-} elseif (isset($_POST["fourthfirst"])) {
+} elseif (isset($_POST["firstfourth"])) {
     $data = setQuestion4(
         "What does CPU stand for?",
         "firstOption",
@@ -216,10 +217,10 @@ if (isset($_POST["firstfirst"])) {
         "Central Program Utility",
         "Computer Processing Unit",
         10,
-        "fourthfirst"
+        "firstfourth"
     );
 
-} elseif (isset($_POST["fourthsecond"])) {
+} elseif (isset($_POST["secondfourth"])) {
     $data = setQuestion4(
         "Which company created the iPhone?",
         "secondOption",
@@ -228,10 +229,10 @@ if (isset($_POST["firstfirst"])) {
         "Google",
         "Microsoft",
         20,
-        "fourthsecond"
+        "secondfourth"
     );
 
-} elseif (isset($_POST["fourththird"])) {
+} elseif (isset($_POST["thirdfourth"])) {
     $data = setQuestion4(
         "What does HTML stand for?",
         "secondOption",
@@ -240,7 +241,7 @@ if (isset($_POST["firstfirst"])) {
         "Hosting Text Module Language",
         "Hyperlink Text Mode Layout",
         30,
-        "fourththird"
+        "thirdfourth"
     );
 
 } elseif (isset($_POST["fourthfourth"])) {
@@ -255,7 +256,7 @@ if (isset($_POST["firstfirst"])) {
         "fourthfourth"
     );
 
-} elseif (isset($_POST["fourthfifth"])) {
+} elseif (isset($_POST["fifthfourth"])) {
     $data = setQuestion4(
         "Moore’s Law states transistor count...",
         "secondOption",
@@ -264,10 +265,10 @@ if (isset($_POST["firstfirst"])) {
         "Triples every year",
         "Stays constant",
         50,
-        "fourthfifth"
+        "fifthfourth"
     );
 
-} elseif (isset($_POST["fifthfirst"])) {
+} elseif (isset($_POST["firstfifth"])) {
     $data = setQuestion4(
         "Who is the main character in Toy Story?",
         "thirdOption",
@@ -276,10 +277,10 @@ if (isset($_POST["firstfirst"])) {
         "Woody",
         "Buzz Lightyear",
         10,
-        "fifthfirst"
+        "firstfifth"
     );
 
-} elseif (isset($_POST["fifthsecond"])) {
+} elseif (isset($_POST["secondfifth"])) {
     $data = setQuestion4(
         "Which movie has 'I'll be back'?",
         "secondOption",
@@ -288,10 +289,10 @@ if (isset($_POST["firstfirst"])) {
         "Predator",
         "Rambo",
         20,
-        "fifthsecond"
+        "secondfifth"
     );
 
-} elseif (isset($_POST["fifththird"])) {
+} elseif (isset($_POST["thirdfifth"])) {
     $data = setQuestion4(
         "Who directed Inception?",
         "thirdOption",
@@ -300,10 +301,10 @@ if (isset($_POST["firstfirst"])) {
         "Christopher Nolan",
         "Ridley Scott",
         30,
-        "fifththird"
+        "thirdfifth"
     );
 
-} elseif (isset($_POST["fifthfourth"])) {
+} elseif (isset($_POST["fourthfifth"])) {
     $data = setQuestion4(
         "Highest-grossing movie of all time?",
         "secondOption",
@@ -312,7 +313,7 @@ if (isset($_POST["firstfirst"])) {
         "Titanic",
         "Star Wars: The Force Awakens",
         40,
-        "fifthfourth"
+        "fourthfifth"
     );
 
 } elseif (isset($_POST["fifthfifth"])) {
