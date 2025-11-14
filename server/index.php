@@ -66,10 +66,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 $questionCount = isset($_COOKIE['questionCount']) ? (int)$_COOKIE['questionCount'] : $questionCount;
 if ($questionCount >= 25) {
 	if ((int)$player1Score > (int)$player2Score) {
-		header('Location: ../client/winner.html');
+		header('Location: ../client/winner1.html');
 		exit;
 	} else {
-		header('Location: ../client/winner.html');
+		header('Location: ../client/winner2.html');
 		exit;
 	}
 }

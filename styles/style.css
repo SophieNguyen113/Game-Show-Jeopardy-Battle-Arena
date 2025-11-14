@@ -202,3 +202,27 @@ body div div button{
 .submit-btn:hover {
   background: #0b3e83;
 }
+
+.winner-box {
+  background: linear-gradient(180deg, #ffffff, lightblue);
+  border: 2px solid rgb(48, 127, 153);
+  border-radius: 12px;
+  padding: 24px;
+  max-width: 760px;
+  margin: 18px auto;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(217,150,0,0.06);
+  transition: transform 140ms ease, box-shadow 140ms ease, border-color 140ms ease;
+}
+
+.winner-box h2 {
+  color: black;
+  font-size: 1.6rem;
+  margin: 0;
+}
+
+.winner-box:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 48px rgba(217,150,0,0.14);
+  border-color: lightskyblue;
+}
