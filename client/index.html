@@ -24,39 +24,39 @@
             </div>
         </div>
 
-        <br/>
+        <div id="score_container_main">
+            <form action="../server/questionPage.php" method="post">
+                <div id = "game_cards_container">
+                    <div class = "row questionRow question-row-small">
+                        <div class = "col-sm categoryHeader"> <div class="category-inner"><b><i>Space</i></b></div></div>
+                        <div class = "col-sm categoryHeader"> <div class="category-inner"><b><i>Health</i></b></div></div>
+                        <div class = "col-sm categoryHeader"> <div class="category-inner"><b><i>World</i></b></div></div>
+                        <div class = "col-sm categoryHeader"> <div class="category-inner"><b><i>Tech</i></b></div></div>
+                        <div class = "col-sm categoryHeader"> <div class="category-inner"><b><i>Movies</i></b></div></div>
+                    </div>
 
-        <form action="../server/questionPage.php" method="post">
-            <div id = "game_cards_container">
-                <div class = "row questionRow question-row-small">
-                    <div class = "col-sm categoryHeader"> <div class="category-inner"><b><i>SPACE</i></b></div></div>
-                    <div class = "col-sm categoryHeader"> <div class="category-inner"><b><i>HEALTH</i></b></div></div>
-                    <div class = "col-sm categoryHeader"> <div class="category-inner"><b><i>GEO</i></b></div></div>
-                    <div class = "col-sm categoryHeader"> <div class="category-inner"><b><i>TECH</i></b></div></div>
-                    <div class = "col-sm categoryHeader"> <div class="category-inner"><b><i>MOVIES</i></b></div></div>
-                </div>
+                    <div class = "row questionRow">
+                        {{BTN_firstfirst}}{{BTN_firstsecond}}{{BTN_firstthird}}{{BTN_firstfourth}}{{BTN_firstfifth}}
+                    </div>
 
-                <div class = "row questionRow">
-                    {{BTN_firstfirst}}{{BTN_firstsecond}}{{BTN_firstthird}}{{BTN_firstfourth}}{{BTN_firstfifth}}
-                </div>
+                    <div class = "row questionRow">
+                        {{BTN_secondfirst}}{{BTN_secondsecond}}{{BTN_secondthird}}{{BTN_secondfourth}}{{BTN_secondfifth}}
+                    </div>
 
-                <div class = "row questionRow">
-                    {{BTN_secondfirst}}{{BTN_secondsecond}}{{BTN_secondthird}}{{BTN_secondfourth}}{{BTN_secondfifth}}
-                </div>
+                    <div class = "row questionRow">
+                        {{BTN_thirdfirst}}{{BTN_thirdsecond}}{{BTN_thirdthird}}{{BTN_thirdfourth}}{{BTN_thirdfifth}}
+                    </div>
 
-                <div class = "row questionRow">
-                    {{BTN_thirdfirst}}{{BTN_thirdsecond}}{{BTN_thirdthird}}{{BTN_thirdfourth}}{{BTN_thirdfifth}}
-                </div>
+                    <div class = "row questionRow">
+                        {{BTN_fourthfirst}}{{BTN_fourthsecond}}{{BTN_fourththird}}{{BTN_fourthfourth}}{{BTN_fourthfifth}}
+                    </div>
 
-                <div class = "row questionRow">
-                    {{BTN_fourthfirst}}{{BTN_fourthsecond}}{{BTN_fourththird}}{{BTN_fourthfourth}}{{BTN_fourthfifth}}
+                    <div class = "row questionRow">
+                        {{BTN_fifthfirst}}{{BTN_fifthsecond}}{{BTN_fifththird}}{{BTN_fifthfourth}}{{BTN_fifthfifth}}
+                    </div>
                 </div>
-
-                <div class = "row questionRow">
-                    {{BTN_fifthfirst}}{{BTN_fifthsecond}}{{BTN_fifththird}}{{BTN_fifthfourth}}{{BTN_fifthfifth}}
-                </div>
-            </div>
-        </form>
+            </form>
+        </div>
 
         <div class="text-center start-btn">
             <a class="btn btn-lg btn-primary" href="../server/restartGame.php">Restart Game</a>
@@ -83,9 +83,10 @@
             <p id="cssvalidator">
                 <a href="http://jigsaw.w3.org/css-validator/check/referer">
                 <img
-                    style="border: 0; width: 88px; height: 31px"
                     src="../images/validatedCSS.png"
                     alt="Valid CSS!"
+                    height="31"
+                    width="88"
                 />
                 </a>
             </p>
