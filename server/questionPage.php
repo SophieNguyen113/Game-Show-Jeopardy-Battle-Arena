@@ -13,13 +13,15 @@ $player1turn = isset($_COOKIE["player1turn"]) && $_COOKIE["player1turn"];
 $player1Score = $_COOKIE["player1Score"] ?? 0;
 $player2Score = $_COOKIE["player2Score"] ?? 0;
 
-function setQuestion($q, $correct, $opt1, $opt2, $score, $cookieName) {
+function setQuestion4($q, $correct, $opt1, $opt2, $opt3, $opt4, $score, $cookieName) {
     setcookie($cookieName, TRUE, time() + 31536000);
     return [
         "question" => $q,
         "correctAnswer" => $correct,
         "firstOption" => $opt1,
         "secondOption" => $opt2,
+        "thirdOption" => $opt3,
+        "fourthOption" => $opt4,
         "questionScore" => $score
     ];
 }
@@ -27,55 +29,303 @@ function setQuestion($q, $correct, $opt1, $opt2, $score, $cookieName) {
 $data = [];
 
 if (isset($_POST["firstfirst"])) {
-    $data = setQuestion("What are the symptoms of dengue fever?", "firstOption", "Fever, headache, rashes, joint-muscle pain", "Fever, blood clotting, back pain", 10, "firstfirst");
+    $data = setQuestion4(
+        "What is the closest planet to the Sun?", 
+        "thirdOption",
+        "Earth", 
+        "Mars", 
+        "Mercury", 
+        "Venus",
+        10, 
+        "firstfirst"
+    );
 } elseif (isset($_POST["firstsecond"])) {
-    $data = setQuestion("Malaria is transmitted by a mosquito bite, but what causes the disease? ", "firstOption", "A parasite", "A virus", 10, "firstsecond");
+    $data = setQuestion4(
+        "Which galaxy do we live in?",
+        "thirdOption",
+        "Andromeda",
+        "Whirlpool",
+        "Milky Way",
+        "Sombrero",
+        20,
+        "firstsecond"
+    );
+
 } elseif (isset($_POST["firstthird"])) {
-    $data = setQuestion("What is the scientific name for the chicken pox virus?", "secondOption", "Vaccina virus", "Varicella zoster", 10, "firstthird");
+    $data = setQuestion4(
+        "What is the largest type of star?",
+        "thirdOption",
+        "White dwarf",
+        "Neutron star",
+        "Red dwarf",
+        "Red supergiant",
+        30,
+        "firstthird"
+    );
+
 } elseif (isset($_POST["firstfourth"])) {
-    $data = setQuestion("What is Polio?", "firstOption", "Virus", "Bacteria", 10, "firstfourth");
+    $data = setQuestion4(
+        "Which black hole was photographed in 2019?",
+        "thirdOption",
+        "Sagittarius A*",
+        "Cygnus X-1",
+        "M87*",
+        "V404 Cygni",
+        40,
+        "firstfourth"
+    );
+
 } elseif (isset($_POST["firstfifth"])) {
-    $data = setQuestion("Cancer is the result of the uncontrolled growth of abnormal cells anywhere in the body", "firstOption", "True", "False", 10, "firstfifth");
+    $data = setQuestion4(
+        "What force keeps planets in orbit?",
+        "secondOption",
+        "Magnetism",
+        "Gravity",
+        "Solar wind",
+        "Radiation",
+        50,
+        "firstfifth"
+    );
+
 } elseif (isset($_POST["secondfirst"])) {
-    $data = setQuestion("Do people who have contracted dengue fever need to be quarantined?", "secondOption", "True", "False", 20, "secondfirst");
+    $data = setQuestion4(
+        "What is the strongest muscle by weight?",
+        "secondOption",
+        "Heart",
+        "Jaw (masseter)",
+        "Gluteus maximus",
+        "Bicep",
+        10,
+        "secondfirst"
+    );
+
 } elseif (isset($_POST["secondsecond"])) {
-    $data = setQuestion("Which of the following US presidents did not suffer from malaria during his lifetime?", "secondOption", "George Washington", "Richard Nixon", 20, "secondsecond");
+    $data = setQuestion4(
+        "How many bones does an adult human have?",
+        "thirdOption",
+        "150",
+        "201",
+        "206",
+        "250",
+        20,
+        "secondsecond"
+    );
+
 } elseif (isset($_POST["secondthird"])) {
-    $data = setQuestion("Which ages account for half of the victims of chicken pox?", "firstOption", "5-9", "10-31", 20, "secondthird");
+    $data = setQuestion4(
+        "Which organ produces insulin?",
+        "secondOption",
+        "Liver",
+        "Pancreas",
+        "Kidney",
+        "Stomach",
+        30,
+        "secondthird"
+    );
+
 } elseif (isset($_POST["secondfourth"])) {
-    $data = setQuestion("Polio is also known as poliomyelitis.", "firstOption", "True", "False", 20, "secondfourth");
+    $data = setQuestion4(
+        "What blood type is the universal donor?",
+        "thirdOption",
+        "A-",
+        "AB+",
+        "O-",
+        "B+",
+        40,
+        "secondfourth"
+    );
+
 } elseif (isset($_POST["secondfifth"])) {
-    $data = setQuestion("Most common form of cancer in all humans.", "secondOption", "Brain cancer", "Skin cancer", 20, "secondfifth");
+    $data = setQuestion4(
+        "Which vitamin comes from sunlight?",
+        "fourthOption",
+        "Vitamin A",
+        "Vitamin B12",
+        "Vitamin C",
+        "Vitamin D",
+        50,
+        "secondfifth"
+    );
+
 } elseif (isset($_POST["thirdfirst"])) {
-    $data = setQuestion("Is it possible to be infected with dengue virus but have no symptoms?", "firstOption", "True", "False", 30, "thirdfirst");
+    $data = setQuestion4(
+        "What is the largest continent?",
+        "secondOption",
+        "Africa",
+        "Asia",
+        "Europe",
+        "North America",
+        10,
+        "thirdfirst"
+    );
+
 } elseif (isset($_POST["thirdsecond"])) {
-    $data = setQuestion("Which of the following can repel mosquitoes?", "firstOption", "Citronella", "Banana", 30, "thirdsecond");
+    $data = setQuestion4(
+        "What is the capital of Australia?",
+        "secondOption",
+        "Sydney",
+        "Canberra",
+        "Melbourne",
+        "Perth",
+        20,
+        "thirdsecond"
+    );
+
 } elseif (isset($_POST["thirdthird"])) {
-    $data = setQuestion("The virus that causes chicken pox is a part of what virus family?", "secondOption", "coronaviruses", "herpesviruses", 30, "thirdthird");
+    $data = setQuestion4(
+        "Which African country has the largest population?",
+        "thirdOption",
+        "Kenya",
+        "Ethiopia",
+        "Nigeria",
+        "Egypt",
+        30,
+        "thirdthird"
+    );
+
 } elseif (isset($_POST["thirdfourth"])) {
-    $data = setQuestion("Who invented the Polio Vaccine?", "secondOption", "Hiram Maxim", "Jonas Salk", 30, "thirdfourth");
+    $data = setQuestion4(
+        "What is the longest river in the world?",
+        "firstOption",
+        "Amazon",
+        "Nile",
+        "Yangtze",
+        "Mississippi",
+        40,
+        "thirdfourth"
+    );
+
 } elseif (isset($_POST["thirdfifth"])) {
-    $data = setQuestion("Tobacco causes _______ of cancer deaths around the world", "secondOption", "30%", "22%", 30, "thirdfifth");
+    $data = setQuestion4(
+        "Which country is landlocked?",
+        "fourthOption",
+        "Thailand",
+        "Vietnam",
+        "Malaysia",
+        "Bolivia",
+        50,
+        "thirdfifth"
+    );
+
 } elseif (isset($_POST["fourthfirst"])) {
-    $data = setQuestion("Is it possible to be infected with dengue virus but have no symptoms?", "secondOption", "3 to 9 Days", "5 to 7 Days", 40, "fourthfirst");
+    $data = setQuestion4(
+        "What does CPU stand for?",
+        "firstOption",
+        "Central Processing Unit",
+        "Core Power Unit",
+        "Central Program Utility",
+        "Computer Processing Unit",
+        10,
+        "fourthfirst"
+    );
+
 } elseif (isset($_POST["fourthsecond"])) {
-    $data = setQuestion("According to the World Health Organization's estimate in 2000, malaria kills one child how often?", "secondOption", "every 5 minutes", "every 30 seconds", 40, "fourthsecond");
+    $data = setQuestion4(
+        "Which company created the iPhone?",
+        "secondOption",
+        "Samsung",
+        "Apple",
+        "Google",
+        "Microsoft",
+        20,
+        "fourthsecond"
+    );
+
 } elseif (isset($_POST["fourththird"])) {
-    $data = setQuestion("The spots, which are symptoms of the chicken pox disease, start in which of the following places?", "firstOption", "Face and trunk", "Knees and elbows", 40, "fourththird");
+    $data = setQuestion4(
+        "What does HTML stand for?",
+        "secondOption",
+        "Hyper Trainer Markup Language",
+        "Hyper Text Markup Language",
+        "Hosting Text Module Language",
+        "Hyperlink Text Mode Layout",
+        30,
+        "fourththird"
+    );
+
 } elseif (isset($_POST["fourthfourth"])) {
-    $data = setQuestion("What is the machine they would put polio patients in?", "firstOption", "Iron Lung", "Automated Breathing Apparatus", 40, "fourthfourth");
+    $data = setQuestion4(
+        "Which language is used heavily in machine learning?",
+        "thirdOption",
+        "Java",
+        "C#",
+        "Python",
+        "Swift",
+        40,
+        "fourthfourth"
+    );
+
 } elseif (isset($_POST["fourthfifth"])) {
-    $data = setQuestion("Which of the viruses below causes cancer resulting from chronic infection?", "secondOption", "Herpes simplex viruses (HSV)", "Human papilloma virus (HPV) and Hepatitis B virus (HBV)", 40, "fourthfifth");
+    $data = setQuestion4(
+        "Moore’s Law states transistor count...",
+        "secondOption",
+        "Halves every decade",
+        "Doubles every two years",
+        "Triples every year",
+        "Stays constant",
+        50,
+        "fourthfifth"
+    );
+
 } elseif (isset($_POST["fifthfirst"])) {
-    $data = setQuestion("If you get dengue fever once, can you get it again?", "firstOption", "True", "False", 50, "fifthfirst");
+    $data = setQuestion4(
+        "Who is the main character in Toy Story?",
+        "thirdOption",
+        "Jessie",
+        "Rex",
+        "Woody",
+        "Buzz Lightyear",
+        10,
+        "fifthfirst"
+    );
+
 } elseif (isset($_POST["fifthsecond"])) {
-    $data = setQuestion("Which of these drinks contains quinine, an anti-malarial property?", "firstOption", "Tonic", "Red Bull", 50, "fifthsecond");
+    $data = setQuestion4(
+        "Which movie has 'I'll be back'?",
+        "secondOption",
+        "Rocky",
+        "Terminator",
+        "Predator",
+        "Rambo",
+        20,
+        "fifthsecond"
+    );
+
 } elseif (isset($_POST["fifththird"])) {
-    $data = setQuestion("Chicken pox isn't contagious.", "secondOption", "True", "False", 50, "fifththird");
+    $data = setQuestion4(
+        "Who directed Inception?",
+        "thirdOption",
+        "Steven Spielberg",
+        "James Cameron",
+        "Christopher Nolan",
+        "Ridley Scott",
+        30,
+        "fifththird"
+    );
+
 } elseif (isset($_POST["fifthfourth"])) {
-    $data = setQuestion("Which year was the polio Vaccine released?", "secondOption", "1985", "1955", 50, "fifthfourth");
+    $data = setQuestion4(
+        "Highest-grossing movie of all time?",
+        "secondOption",
+        "Avengers: Endgame",
+        "Avatar",
+        "Titanic",
+        "Star Wars: The Force Awakens",
+        40,
+        "fifthfourth"
+    );
+
 } elseif (isset($_POST["fifthfifth"])) {
-    $data = setQuestion("What kind of foods are linked to colon cancer?", "firstOption", "Processed meats", "Foods with salt substitutes", 50, "fifthfifth");
+    $data = setQuestion4(
+        "Who is the 'Queen of Pop'?",
+        "secondOption",
+        "Taylor Swift",
+        "Madonna",
+        "Ariana Grande",
+        "Beyoncé",
+        50,
+        "fifthfifth"
+    );
 }
 
 include "../client/questionPage.html";
