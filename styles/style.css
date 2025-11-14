@@ -6,6 +6,7 @@ html, body {
     height: 100%;
     margin:0;
     overscroll-behavior: none;
+    background-image: url("../images/background.png");
 }
 
 body {
@@ -101,7 +102,6 @@ main {
 body div div button{
   font-size: 30px;
   font-family: 'Comic Sans', sans-serif;
-  /* background-image: url("../images/buttonbackground.png"); */
 }
 
 .about-container { 
@@ -116,6 +116,7 @@ body div div button{
 
 .start-btn { 
   margin-top: 16px; 
+  padding-bottom: 20px;
 }
 
 .site-footer {
@@ -130,4 +131,20 @@ body div div button{
 
 .score-highlight { 
   background: lightblue; 
+}
+
+#copyright {
+  padding: 0.3rem;
+  margin-top: 3rem;
+  background-color: var(--color-pink);
+  color: var(--color-white);
+  text-align: center;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+#htmlvalidator, #cssvalidator {
+    display: inline-block;
+    margin: 0 10px;
+    margin-bottom: 10px;
 }
