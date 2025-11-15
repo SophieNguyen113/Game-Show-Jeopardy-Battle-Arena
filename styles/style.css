@@ -226,3 +226,333 @@ body div div button{
   box-shadow: 0 20px 48px rgba(217,150,0,0.14);
   border-color: lightskyblue;
 }
+
+.daily-double-btn {
+    background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%) !important;
+    color: #000 !important;
+    font-weight: bold !important;
+    animation: pulse 1.5s infinite;
+    border: 3px solid #FF4500 !important;
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
+    }
+    50% {
+        transform: scale(1.05);
+        box-shadow: 0 0 25px rgba(255, 215, 0, 0.9);
+    }
+}
+
+.daily-double-btn:hover {
+    background: linear-gradient(135deg, #FFED4E 0%, #FFB84D 100%) !important;
+    transform: scale(1.1);
+}
+
+/* Daily Double Wager Container */
+.daily-double-container {
+    text-align: center;
+    padding: 50px;
+    margin: 50px auto;
+    max-width: 600px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 15px;
+    color: white;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.daily-double-title {
+    font-size: 3em;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    animation: glow 1.5s infinite alternate;
+}
+
+@keyframes glow {
+    from { 
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.3), 0 0 10px #ffd700; 
+    }
+    to { 
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.3), 0 0 20px #ffd700, 0 0 30px #ffd700; 
+    }
+}
+
+.wager-input {
+    font-size: 1.5em;
+    padding: 15px;
+    margin: 20px 0;
+    width: 100%;
+    max-width: 300px;
+    border-radius: 8px;
+    border: none;
+    text-align: center;
+}
+
+.wager-btn {
+    font-size: 1.3em;
+    padding: 15px 40px;
+    background-color: #ffd700;
+    color: #000;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.wager-btn:hover {
+    background-color: #ffed4e;
+    transform: scale(1.05);
+}
+
+.wager-info {
+    font-size: 1.1em;
+    margin: 15px 0;
+    background: rgba(255,255,255,0.1);
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.wager-description {
+    font-size: 1.3em;
+    margin: 20px 0;
+}
+
+.wager-prompt {
+    font-size: 1.1em;
+}
+
+/* Daily Double Banner on Question Page */
+.daily-double-banner {
+    background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+    color: #000;
+    font-size: 2em;
+    font-weight: bold;
+    padding: 20px;
+    text-align: center;
+    margin: 30px auto;
+    max-width: 700px;
+    border-radius: 10px;
+    border: 3px solid #FF4500;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+    animation: ddPulse 1s infinite;
+    clear: both;
+}
+
+.daily-double-banner span {
+    font-size: 0.6em;
+    display: block;
+    margin-top: 10px;
+}
+
+@keyframes ddPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+}
+
+/* Category Mastery Alert */
+.mastery-alert {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+    min-width: 400px;
+    font-size: 1.2em;
+    font-weight: bold;
+    animation: slideDown 0.5s ease-out, fadeOut 0.5s ease-in 4.5s;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+    border: none;
+    color: white;
+    padding: 15px 20px;
+    border-radius: 8px;
+}
+
+@keyframes slideDown {
+    from {
+        top: -100px;
+        opacity: 0;
+    }
+    to {
+        top: 20px;
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}.daily-double-btn {
+    background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%) !important;
+    color: #000 !important;
+    font-weight: bold !important;
+    animation: pulse 1.5s infinite;
+    border: 3px solid #FF4500 !important;
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
+    }
+    50% {
+        transform: scale(1.05);
+        box-shadow: 0 0 25px rgba(255, 215, 0, 0.9);
+    }
+}
+
+.daily-double-btn:hover {
+    background: linear-gradient(135deg, #FFED4E 0%, #FFB84D 100%) !important;
+    transform: scale(1.1);
+}
+
+/* Daily Double Wager Container */
+.daily-double-container {
+    text-align: center;
+    padding: 50px;
+    margin: 50px auto;
+    max-width: 600px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 15px;
+    color: white;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.daily-double-title {
+    font-size: 3em;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    animation: glow 1.5s infinite alternate;
+}
+
+@keyframes glow {
+    from { 
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.3), 0 0 10px #ffd700; 
+    }
+    to { 
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.3), 0 0 20px #ffd700, 0 0 30px #ffd700; 
+    }
+}
+
+.wager-input {
+    font-size: 1.5em;
+    padding: 15px;
+    margin: 20px 0;
+    width: 100%;
+    max-width: 300px;
+    border-radius: 8px;
+    border: none;
+    text-align: center;
+}
+
+.wager-btn {
+    font-size: 1.3em;
+    padding: 15px 40px;
+    background-color: #ffd700;
+    color: #000;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.wager-btn:hover {
+    background-color: #ffed4e;
+    transform: scale(1.05);
+}
+
+.wager-info {
+    font-size: 1.1em;
+    margin: 15px 0;
+    background: rgba(255,255,255,0.1);
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.wager-description {
+    font-size: 1.3em;
+    margin: 20px 0;
+}
+
+.wager-prompt {
+    font-size: 1.1em;
+}
+
+/* Daily Double Banner on Question Page */
+.daily-double-banner {
+    background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+    color: #000;
+    font-size: 2em;
+    font-weight: bold;
+    padding: 20px;
+    text-align: center;
+    margin: 30px auto;
+    max-width: 700px;
+    border-radius: 10px;
+    border: 3px solid #FF4500;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+    animation: ddPulse 1s infinite;
+    clear: both;
+}
+
+.daily-double-banner span {
+    font-size: 0.6em;
+    display: block;
+    margin-top: 10px;
+}
+
+@keyframes ddPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+}
+
+/* Category Mastery Alert */
+.mastery-alert {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+    min-width: 400px;
+    font-size: 1.2em;
+    font-weight: bold;
+    animation: slideDown 0.5s ease-out, fadeOut 0.5s ease-in 4.5s;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+    border: none;
+    color: white;
+    padding: 15px 20px;
+    border-radius: 8px;
+}
+
+@keyframes slideDown {
+    from {
+        top: -100px;
+        opacity: 0;
+    }
+    to {
+        top: 20px;
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}

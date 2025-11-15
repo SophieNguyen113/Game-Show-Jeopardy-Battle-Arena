@@ -7,6 +7,39 @@ $player2Score = $_COOKIE['player2Score'] ?? '0';
 $questionCount = isset($_COOKIE['questionCount']) ? (int)$_COOKIE['questionCount'] : 0;
 $player1turn = isset($_COOKIE['player1turn']) ? filter_var($_COOKIE['player1turn'], FILTER_VALIDATE_BOOLEAN) : true;
 
+// Initialize category mastery tracking
+if (!isset($_COOKIE['player1_space'])) {
+	setcookie('player1_space', '0', time() + 31536000);
+	setcookie('player1_health', '0', time() + 31536000);
+	setcookie('player1_world', '0', time() + 31536000);
+	setcookie('player1_tech', '0', time() + 31536000);
+	setcookie('player1_movies', '0', time() + 31536000);
+	setcookie('player2_space', '0', time() + 31536000);
+	setcookie('player2_health', '0', time() + 31536000);
+	setcookie('player2_world', '0', time() + 31536000);
+	setcookie('player2_tech', '0', time() + 31536000);
+	setcookie('player2_movies', '0', time() + 31536000);
+}
+
+// Initialize Daily Double positions (randomly select 2 questions) - Only once per game
+if (!isset($_COOKIE['daily_double_1']) || $_COOKIE['daily_double_1'] === '') {
+	$allButtons = [
+		'firstfirst','firstsecond','firstthird','firstfourth','firstfifth',
+		'secondfirst','secondsecond','secondthird','secondfourth','secondfifth',
+		'thirdfirst','thirdsecond','thirdthird','thirdfourth','thirdfifth',
+		'fourthfirst','fourthsecond','fourththird','fourthfourth','fourthfifth',
+		'fifthfirst','fifthsecond','fifththird','fifthfourth','fifthfifth'
+	];
+	
+	// Use better randomization
+	$randomKeys = array_rand($allButtons, 2);
+	$dd1 = $allButtons[$randomKeys[0]];
+	$dd2 = $allButtons[$randomKeys[1]];
+	
+	setcookie('daily_double_1', $dd1, time() + 31536000);
+	setcookie('daily_double_2', $dd2, time() + 31536000);
+}
+
 if (!isset($_COOKIE['player1Score'])) {
 	setcookie('player1Score', $player1Score, time() + 31536000);
 }
@@ -28,18 +61,62 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 		$correct = ($_POST['correctAnswer'] ?? '') === ($_POST['selectedAnswer'] ?? '');
 		$questionScore = (int)($_POST['questionScore'] ?? 0);
+		$category = $_POST['category'] ?? '';
+		$wasDailyDouble = isset($_POST['was_daily_double']) && $_POST['was_daily_double'] === '1';
 
 		if ($correct) {
 			$p1turn = isset($_COOKIE['player1turn']) ? filter_var($_COOKIE['player1turn'], FILTER_VALIDATE_BOOLEAN) : $player1turn;
+			
+			// Update score - ADD points for correct answer
 			if ($p1turn) {
 				$player1Score = ((int)$player1Score + $questionScore);
 				setcookie('player1Score', (string)$player1Score, time() + 31536000);
+				
+				// Update category mastery
+				$currentMastery = (int)($_COOKIE["player1_$category"] ?? 0);
+				$newMastery = $currentMastery + 1;
+				setcookie("player1_$category", (string)$newMastery, time() + 31536000);
+				
+				// Check for Category Mastery Bonus (3+ correct in same category)
+				if ($newMastery == 3) {
+					$bonusPoints = 25;
+					$player1Score = ((int)$player1Score + $bonusPoints);
+					setcookie('player1Score', (string)$player1Score, time() + 31536000);
+					setcookie('mastery_message', "Player 1 earned a 25-point Category Mastery Bonus for " . ucfirst($category) . "!", time() + 10);
+				}
 			} else {
 				$player2Score = ((int)$player2Score + $questionScore);
 				setcookie('player2Score', (string)$player2Score, time() + 31536000);
+				
+				// Update category mastery
+				$currentMastery = (int)($_COOKIE["player2_$category"] ?? 0);
+				$newMastery = $currentMastery + 1;
+				setcookie("player2_$category", (string)$newMastery, time() + 31536000);
+				
+				// Check for Category Mastery Bonus
+				if ($newMastery == 3) {
+					$bonusPoints = 25;
+					$player2Score = ((int)$player2Score + $bonusPoints);
+					setcookie('player2Score', (string)$player2Score, time() + 31536000);
+					setcookie('mastery_message', "Player 2 earned a 25-point Category Mastery Bonus for " . ucfirst($category) . "!", time() + 10);
+				}
 			}
 		} else {
+			// Wrong answer
 			$p1turn = isset($_COOKIE['player1turn']) ? filter_var($_COOKIE['player1turn'], FILTER_VALIDATE_BOOLEAN) : $player1turn;
+			
+			// If Daily Double, SUBTRACT the wager amount
+			if ($wasDailyDouble) {
+				if ($p1turn) {
+					$player1Score = ((int)$player1Score - $questionScore);
+					setcookie('player1Score', (string)$player1Score, time() + 31536000);
+				} else {
+					$player2Score = ((int)$player2Score - $questionScore);
+					setcookie('player2Score', (string)$player2Score, time() + 31536000);
+				}
+			}
+			
+			// Switch turns
 			$p1turn = !$p1turn;
 			setcookie('player1turn', $p1turn ? '1' : '0', time() + 31536000);
 			setcookie('player2turn', $p1turn ? '0' : '1', time() + 31536000);
@@ -76,10 +153,23 @@ if ($questionCount >= 25) {
 
 function renderButton(string $name, string $label): string {
 	$disabled = !empty($_COOKIE[$name]);
+	$dd1 = $_COOKIE['daily_double_1'] ?? '';
+	$dd2 = $_COOKIE['daily_double_2'] ?? '';
+	$isDailyDouble = ($name === $dd1 || $name === $dd2);
+	
 	if ($disabled) {
 		return "<div class=\"col-sm questionbutton\"><button type=\"submit\" name=\"$name\" style=\"width: 100%; height: 100%;\" disabled>$label</button></div>";
 	}
-	return "<div class=\"col-sm questionbutton\"><button type=\"submit\" name=\"$name\" style=\"width: 100%; height: 100%;\">$label</button></div>";
+	
+	$displayLabel = $isDailyDouble ? "DD" : $label;
+	$buttonClass = $isDailyDouble ? "daily-double-btn" : "";
+	
+	return "<div class=\"col-sm questionbutton\"><button type=\"submit\" name=\"$name\" class=\"$buttonClass\" style=\"width: 100%; height: 100%;\">$displayLabel</button></div>";
+}
+
+$masteryMessage = '';
+if (isset($_COOKIE['mastery_message'])) {
+	$masteryMessage = '<div class="alert alert-success mastery-alert">' . htmlspecialchars($_COOKIE['mastery_message'], ENT_QUOTES, 'UTF-8') . '</div>';
 }
 
 $replacements = [
@@ -137,8 +227,10 @@ if (!file_exists($templatePath)) {
 $content = file_get_contents($templatePath);
 $output = strtr($content, $replacements);
 
+// Insert mastery message after the score container
+$output = str_replace('<div id="score_container_main">', '<div id="score_container_main">' . $masteryMessage, $output);
+
 header('Content-Type: text/html; charset=utf-8');
 echo $output;
 
 ?>
-
