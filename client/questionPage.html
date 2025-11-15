@@ -53,38 +53,47 @@
             </div>
         </div>
 
+        <?php if (isset($data["isDailyDouble"]) && $data["isDailyDouble"]) { ?>
+            <div class="daily-double-banner">
+                DAILY DOUBLE!<br>
+                <span>Your Wager: $<?= $data["questionScore"] ?></span>
+            </div>
+        <?php } ?>
+
         <div id="score_container_main">
             <form action="../server/index.php" method="post">
                 <div class="text-center">
                     <div class="question-box">
-                        <h2><?= $data["question"] ?></h2>
+                        <h2><?= isset($data["question"]) ? $data["question"] : '' ?></h2>
 
                         <label class="answer-option">
-                            <input type="radio" name="selectedAnswer" value="firstOption">
-                            <span class="answer-text"><?= $data["firstOption"] ?></span>
+                            <input type="radio" name="selectedAnswer" value="firstOption" required>
+                            <span class="answer-text"><?= isset($data["firstOption"]) ? $data["firstOption"] : '' ?></span>
                         </label>
 
                         <label class="answer-option">
                             <input type="radio" name="selectedAnswer" value="secondOption">
-                            <span class="answer-text"><?= $data["secondOption"] ?></span>
+                            <span class="answer-text"><?= isset($data["secondOption"]) ? $data["secondOption"] : '' ?></span>
                         </label>
 
                         <label class="answer-option">
                             <input type="radio" name="selectedAnswer" value="thirdOption">
-                            <span class="answer-text"><?= $data["thirdOption"] ?></span>
+                            <span class="answer-text"><?= isset($data["thirdOption"]) ? $data["thirdOption"] : '' ?></span>
                         </label>
 
                         <label class="answer-option">
                             <input type="radio" name="selectedAnswer" value="fourthOption">
-                            <span class="answer-text"><?= $data["fourthOption"] ?></span>
+                            <span class="answer-text"><?= isset($data["fourthOption"]) ? $data["fourthOption"] : '' ?></span>
                         </label>
 
                         <input class="submit-btn" type="submit" name="answerButton" value="Submit Answer">
                     </div>
 
-                    <input type="hidden" name="correctAnswer" value="<?= $data["correctAnswer"] ?>">
-                    <input type="hidden" name="questionScore" value="<?= $data["questionScore"] ?>">
+                    <input type="hidden" name="correctAnswer" value="<?= isset($data["correctAnswer"]) ? $data["correctAnswer"] : '' ?>">
+                    <input type="hidden" name="questionScore" value="<?= isset($data["questionScore"]) ? $data["questionScore"] : 0 ?>">
                     <input type="hidden" name="player1turn" value="<?= $player1turn ?>">
+                    <input type="hidden" name="category" value="<?= isset($data["category"]) ? $data["category"] : '' ?>">
+                    <input type="hidden" name="was_daily_double" value="<?= (isset($data["isDailyDouble"]) && $data["isDailyDouble"]) ? '1' : '0' ?>">
                 </div>
             </form>
         </div>
