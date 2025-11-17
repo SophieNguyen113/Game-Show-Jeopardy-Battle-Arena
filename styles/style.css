@@ -360,7 +360,6 @@ body div div button{
     50% { transform: scale(1.02); }
 }
 
-/* Category Mastery Alert */
 .mastery-alert {
     position: fixed;
     top: 20px;
@@ -524,7 +523,6 @@ body div div button{
     50% { transform: scale(1.02); }
 }
 
-/* Category Mastery Alert */
 .mastery-alert {
     position: fixed;
     top: 20px;
@@ -536,9 +534,9 @@ body div div button{
     font-weight: bold;
     animation: slideDown 0.5s ease-out, fadeOut 0.5s ease-in 4.5s;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-    background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+    background: linear-gradient(180deg, #ffffff, lightblue);
     border: none;
-    color: white;
+    color: black;
     padding: 15px 20px;
     border-radius: 8px;
 }
