@@ -7,24 +7,6 @@ $player2Score = $_COOKIE['player2Score'] ?? '0';
 $questionCount = isset($_COOKIE['questionCount']) ? (int)$_COOKIE['questionCount'] : 0;
 $player1turn = isset($_COOKIE['player1turn']) ? filter_var($_COOKIE['player1turn'], FILTER_VALIDATE_BOOLEAN) : true;
 
-// Initialize local variables for category mastery (will be updated in real-time)
-$categoryMastery = [
-	'player1' => [
-		'space' => (int)($_COOKIE['player1_space'] ?? 0),
-		'health' => (int)($_COOKIE['player1_health'] ?? 0),
-		'world' => (int)($_COOKIE['player1_world'] ?? 0),
-		'tech' => (int)($_COOKIE['player1_tech'] ?? 0),
-		'movies' => (int)($_COOKIE['player1_movies'] ?? 0)
-	],
-	'player2' => [
-		'space' => (int)($_COOKIE['player2_space'] ?? 0),
-		'health' => (int)($_COOKIE['player2_health'] ?? 0),
-		'world' => (int)($_COOKIE['player2_world'] ?? 0),
-		'tech' => (int)($_COOKIE['player2_tech'] ?? 0),
-		'movies' => (int)($_COOKIE['player2_movies'] ?? 0)
-	]
-];
-
 // Initialize category mastery tracking
 if (!isset($_COOKIE['player1_space'])) {
 	setcookie('player1_space', '0', time() + 31536000);
@@ -93,6 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 				// Update category mastery
 				$currentMastery = (int)($_COOKIE["player1_$category"] ?? 0);
 				$newMastery = $currentMastery + 1;
+				setcookie("player1_$category", (string)$newMastery, time() + 31536000);
 				
 				// Check for Category Mastery Bonus (2+ correct in same category)
 				if ($newMastery == 2) {
@@ -102,11 +85,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 					setcookie('mastery_message', "Player 1 earned a 25-point Category Mastery Bonus for " . ucfirst($category) . "!", time() + 10);
 					// Reset category counter after bonus
 					setcookie("player1_$category", '0', time() + 31536000);
-					$categoryMastery['player1'][$category] = 0;
-				} else {
-					// Only increment counter if we haven't reached threshold
-					setcookie("player1_$category", (string)$newMastery, time() + 31536000);
-					$categoryMastery['player1'][$category] = $newMastery;
 				}
 			} else {
 				$player2Score = ((int)$player2Score + $questionScore);
@@ -115,6 +93,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 				// Update category mastery
 				$currentMastery = (int)($_COOKIE["player2_$category"] ?? 0);
 				$newMastery = $currentMastery + 1;
+				setcookie("player2_$category", (string)$newMastery, time() + 31536000);
 				
 				// Check for Category Mastery Bonus
 				if ($newMastery == 2) {
@@ -124,11 +103,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 					setcookie('mastery_message', "Player 2 earned a 25-point Category Mastery Bonus for " . ucfirst($category) . "!", time() + 10);
 					// Reset category counter after bonus
 					setcookie("player2_$category", '0', time() + 31536000);
-					$categoryMastery['player2'][$category] = 0;
-				} else {
-					// Only increment counter if we haven't reached threshold
-					setcookie("player2_$category", (string)$newMastery, time() + 31536000);
-					$categoryMastery['player2'][$category] = $newMastery;
 				}
 			}
 		} else {
@@ -141,13 +115,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 					$currentMastery = (int)($_COOKIE["player1_$category"] ?? 0);
 					if ($currentMastery > 0) {
 						setcookie("player1_$category", '0', time() + 31536000);
-						$categoryMastery['player1'][$category] = 0;
 					}
 				} else {
 					$currentMastery = (int)($_COOKIE["player2_$category"] ?? 0);
 					if ($currentMastery > 0) {
 						setcookie("player2_$category", '0', time() + 31536000);
-						$categoryMastery['player2'][$category] = 0;
 					}
 				}
 			}
@@ -225,8 +197,8 @@ $masteryTrackerP1 = '<div class="mastery-tracker"><h3>Player 1 Progress</h3>';
 $masteryTrackerP2 = '<div class="mastery-tracker"><h3>Player 2 Progress</h3>';
 
 foreach ($categories as $key => $label) {
-	$p1Count = $categoryMastery['player1'][$key];
-	$p2Count = $categoryMastery['player2'][$key];
+	$p1Count = (int)($_COOKIE["player1_$key"] ?? 0);
+	$p2Count = (int)($_COOKIE["player2_$key"] ?? 0);
 	
 	$p1Dots = str_repeat('●', $p1Count) . str_repeat('○', 2 - $p1Count);
 	$p2Dots = str_repeat('●', $p2Count) . str_repeat('○', 2 - $p2Count);
