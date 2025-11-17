@@ -77,14 +77,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 				$newMastery = $currentMastery + 1;
 				setcookie("player1_$category", (string)$newMastery, time() + 31536000);
 				
-				// Check for Category Mastery Bonus (2+ correct in same category)
-				if ($newMastery == 2) {
+				// Check for Category Mastery Bonus (3+ correct in same category)
+				if ($newMastery == 3) {
 					$bonusPoints = 25;
 					$player1Score = ((int)$player1Score + $bonusPoints);
 					setcookie('player1Score', (string)$player1Score, time() + 31536000);
 					setcookie('mastery_message', "Player 1 earned a 25-point Category Mastery Bonus for " . ucfirst($category) . "!", time() + 10);
-					// Reset category counter after bonus
-					setcookie("player1_$category", '0', time() + 31536000);
 				}
 			} else {
 				$player2Score = ((int)$player2Score + $questionScore);
@@ -96,33 +94,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 				setcookie("player2_$category", (string)$newMastery, time() + 31536000);
 				
 				// Check for Category Mastery Bonus
-				if ($newMastery == 2) {
+				if ($newMastery == 3) {
 					$bonusPoints = 25;
 					$player2Score = ((int)$player2Score + $bonusPoints);
 					setcookie('player2Score', (string)$player2Score, time() + 31536000);
 					setcookie('mastery_message', "Player 2 earned a 25-point Category Mastery Bonus for " . ucfirst($category) . "!", time() + 10);
-					// Reset category counter after bonus
-					setcookie("player2_$category", '0', time() + 31536000);
 				}
 			}
 		} else {
 			// Wrong answer
 			$p1turn = isset($_COOKIE['player1turn']) ? filter_var($_COOKIE['player1turn'], FILTER_VALIDATE_BOOLEAN) : $player1turn;
-			
-			// Reset category mastery on wrong answer if they had progress
-			if (!empty($category)) {
-				if ($p1turn) {
-					$currentMastery = (int)($_COOKIE["player1_$category"] ?? 0);
-					if ($currentMastery > 0) {
-						setcookie("player1_$category", '0', time() + 31536000);
-					}
-				} else {
-					$currentMastery = (int)($_COOKIE["player2_$category"] ?? 0);
-					if ($currentMastery > 0) {
-						setcookie("player2_$category", '0', time() + 31536000);
-					}
-				}
-			}
 			
 			// If Daily Double, SUBTRACT the wager amount
 			if ($wasDailyDouble) {
@@ -191,25 +172,6 @@ if (isset($_COOKIE['mastery_message'])) {
 	$masteryMessage = '<div class="alert alert-success mastery-alert">' . htmlspecialchars($_COOKIE['mastery_message'], ENT_QUOTES, 'UTF-8') . '</div>';
 }
 
-// Build category mastery tracker HTML
-$categories = ['space' => 'Space', 'health' => 'Health', 'world' => 'World', 'tech' => 'Tech', 'movies' => 'Movies'];
-$masteryTrackerP1 = '<div class="mastery-tracker"><h3>Player 1 Progress</h3>';
-$masteryTrackerP2 = '<div class="mastery-tracker"><h3>Player 2 Progress</h3>';
-
-foreach ($categories as $key => $label) {
-	$p1Count = (int)($_COOKIE["player1_$key"] ?? 0);
-	$p2Count = (int)($_COOKIE["player2_$key"] ?? 0);
-	
-	$p1Dots = str_repeat('●', $p1Count) . str_repeat('○', 2 - $p1Count);
-	$p2Dots = str_repeat('●', $p2Count) . str_repeat('○', 2 - $p2Count);
-	
-	$masteryTrackerP1 .= "<div class=\"category-progress\"><span class=\"cat-label\">$label:</span> <span class=\"cat-dots\">$p1Dots</span></div>";
-	$masteryTrackerP2 .= "<div class=\"category-progress\"><span class=\"cat-label\">$label:</span> <span class=\"cat-dots\">$p2Dots</span></div>";
-}
-
-$masteryTrackerP1 .= '</div>';
-$masteryTrackerP2 .= '</div>';
-
 $replacements = [
 	'{{PLAYER1_SCORE}}' => htmlspecialchars((string)$player1Score, ENT_QUOTES, 'UTF-8'),
 	'{{PLAYER2_SCORE}}' => htmlspecialchars((string)$player2Score, ENT_QUOTES, 'UTF-8'),
@@ -264,10 +226,6 @@ if (!file_exists($templatePath)) {
 
 $content = file_get_contents($templatePath);
 $output = strtr($content, $replacements);
-
-// Insert mastery trackers at the very beginning of body content
-$trackers = '<div class="mastery-trackers-container">' . $masteryTrackerP1 . $masteryTrackerP2 . '</div>';
-$output = str_replace('</header>', '</header>' . $trackers, $output);
 
 // Insert mastery message after the score container
 $output = str_replace('<div id="score_container_main">', '<div id="score_container_main">' . $masteryMessage, $output);
