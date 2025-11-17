@@ -111,6 +111,12 @@ body div div button{
   padding: 18px; 
 }
 
+.game-container { 
+  max-width: 1500px;
+  margin: 24px auto; 
+  padding: 18px; 
+}
+
 .feature-list li { 
   margin-bottom: 8px; 
 }
@@ -554,5 +560,143 @@ body div div button{
     }
     to {
         opacity: 0;
+    }
+}
+
+.game-layout {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.game-area {
+    flex: 1;
+    min-width: 0;
+}
+
+.game-board {
+    margin-top: 0;
+}
+
+#mastery_tracker_container {
+    background: lightblue;
+    color: black;
+    padding: 25px;
+    border-radius: 12px;
+    width: 300px;
+    flex-shrink: 0;
+}
+
+#mastery_tracker_container h3 {
+    text-align: center;
+    color: black;
+    margin-bottom: 15px;
+    font-size: 1.4em;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.mastery-info {
+    text-align: center;
+    color: black;
+    margin-bottom: 20px;
+    font-style: italic;
+    font-size: 1em;
+    line-height: 1.4;
+}
+
+.mastery-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.mastery-category {
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background-color: white;
+}
+
+.category-name {
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: black;
+    font-size: 1.1em;
+    text-align: center;
+}
+
+.player-progress {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.player1-progress, .player2-progress {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.9em;
+}
+
+.progress-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    display: inline-block;
+    border: 2px solid #666;
+    transition: all 0.3s ease;
+}
+
+.progress-dot.dot-filled {
+    background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+    border-color: #28a745;
+    box-shadow: 0 0 6px rgba(40, 167, 69, 0.6);
+}
+
+.progress-dot.dot-empty {
+    background: transparent;
+    border-color: #666;
+}
+
+.player1-progress {
+    color: black;
+}
+
+.player2-progress {
+    color: black;
+}
+
+@media (max-width: 1200px) {
+    .game-layout {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    #mastery_tracker_container {
+        width: 100%;
+        max-width: 700px;
+        margin-bottom: 25px;
+    }
+    
+    .game-area {
+        width: 100%;
+    }
+    
+    .mastery-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 20px;
+    }
+    
+    .mastery-category {
+        text-align: center;
+    }
+    
+    .player1-progress, .player2-progress {
+        justify-content: center;
+        gap: 10px;
     }
 }

@@ -12,21 +12,31 @@
         <h1 class="center" id="h1">Game Show: Jeopardy! Battle Arena</h1>
     </header>
 
-    <main class="about-container">
-        <div id="score_container_main">
-            <div>
-                <div class="player-col left huge {{PLAYER1_HEADER_CLASS}}"><img src="../images/player.png" width="50px" height = "50px"/>Player 1</div>
-                <div class="player-col right huge {{PLAYER2_HEADER_CLASS}}"><img src="../images/player.png" width="50px" height = "50px"/>{{PLAYER2_NAME}}</div>
+    <main class="game-container">
+        <div class="game-layout">
+            <div id="mastery_tracker_container">
+                <h3>Category Mastery Progress</h3>
+                <div class="mastery-info">Get 3 correct answers in any category to earn a 25-point bonus!</div>
+                <div class="mastery-grid">
+                    {{MASTERY_TRACKER}}
+                </div>
             </div>
-            <div>
-                <div class="player-col left large {{PLAYER1_SCORE_CLASS}}">{{PLAYER1_SCORE}}</div>
-                <div class="player-col right large {{PLAYER2_SCORE_CLASS}}">{{PLAYER2_SCORE}}</div>
-            </div>
-        </div>
 
-        <div id="score_container_main">
-            <form action="../server/questionPage.php" method="post">
-                <div id = "game_cards_container">
+            <div class="game-area">
+                <div id="score_container_main">
+                    <div>
+                        <div class="player-col left huge {{PLAYER1_HEADER_CLASS}}"><img src="../images/player.png" width="50px" height = "50px"/>Player 1</div>
+                        <div class="player-col right huge {{PLAYER2_HEADER_CLASS}}"><img src="../images/player.png" width="50px" height = "50px"/>{{PLAYER2_NAME}}</div>
+                    </div>
+                    <div>
+                        <div class="player-col left large {{PLAYER1_SCORE_CLASS}}">{{PLAYER1_SCORE}}</div>
+                        <div class="player-col right large {{PLAYER2_SCORE_CLASS}}">{{PLAYER2_SCORE}}</div>
+                    </div>
+                </div>
+
+                <div class="game-board">
+                    <form action="../server/questionPage.php" method="post">
+                    <div id = "game_cards_container">
                     <div class = "row questionRow question-row-small">
                         <div class = "col-sm categoryHeader"> <div class="category-inner"><b><i>Space</i></b></div></div>
                         <div class = "col-sm categoryHeader"> <div class="category-inner"><b><i>Health</i></b></div></div>
@@ -54,10 +64,12 @@
                     <div class = "row questionRow">
                         {{BTN_fifthfirst}}{{BTN_fifthsecond}}{{BTN_fifththird}}{{BTN_fifthfourth}}{{BTN_fifthfifth}}
                     </div>
+                    </div>
+                    </form>
                 </div>
-            </form>
-        </div>
-
+            </div>
+        </div>        
+        
         <div class="text-center start-btn">
             <a class="btn btn-lg btn-primary" href="../server/restartGame.php">Restart Game</a>
         </div>

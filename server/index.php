@@ -8,17 +8,16 @@ $questionCount = isset($_COOKIE['questionCount']) ? (int)$_COOKIE['questionCount
 $player1turn = isset($_COOKIE['player1turn']) ? filter_var($_COOKIE['player1turn'], FILTER_VALIDATE_BOOLEAN) : true;
 
 // Initialize category mastery tracking
-if (!isset($_COOKIE['player1_space'])) {
-	setcookie('player1_space', '0', time() + 31536000);
-	setcookie('player1_health', '0', time() + 31536000);
-	setcookie('player1_world', '0', time() + 31536000);
-	setcookie('player1_tech', '0', time() + 31536000);
-	setcookie('player1_movies', '0', time() + 31536000);
-	setcookie('player2_space', '0', time() + 31536000);
-	setcookie('player2_health', '0', time() + 31536000);
-	setcookie('player2_world', '0', time() + 31536000);
-	setcookie('player2_tech', '0', time() + 31536000);
-	setcookie('player2_movies', '0', time() + 31536000);
+$categories_init = ['space', 'health', 'world', 'tech', 'movies'];
+foreach ($categories_init as $cat) {
+	if (!isset($_COOKIE["player1_$cat"])) {
+		setcookie("player1_$cat", '0', time() + 31536000);
+		$_COOKIE["player1_$cat"] = '0'; // Make available immediately
+	}
+	if (!isset($_COOKIE["player2_$cat"])) {
+		setcookie("player2_$cat", '0', time() + 31536000);
+		$_COOKIE["player2_$cat"] = '0'; // Make available immediately
+	}
 }
 
 // Initialize Daily Double positions (randomly select 2 questions) - Only once per game
@@ -77,12 +76,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 				$newMastery = $currentMastery + 1;
 				setcookie("player1_$category", (string)$newMastery, time() + 31536000);
 				
-				// Check for Category Mastery Bonus (3+ correct in same category)
-				if ($newMastery == 3) {
+				$_COOKIE["player1_$category"] = (string)$newMastery;
+				
+				// Check for Category Mastery Bonus (exactly 3 correct in same category)
+				if ($newMastery === 3 && !isset($_COOKIE["player1_{$category}_bonus"])) {
 					$bonusPoints = 25;
 					$player1Score = ((int)$player1Score + $bonusPoints);
 					setcookie('player1Score', (string)$player1Score, time() + 31536000);
 					setcookie('mastery_message', "Player 1 earned a 25-point Category Mastery Bonus for " . ucfirst($category) . "!", time() + 10);
+					// Mark bonus as awarded to prevent multiple triggers
+					setcookie("player1_{$category}_bonus", '1', time() + 31536000);
+					$_COOKIE["player1_{$category}_bonus"] = '1';
 				}
 			} else {
 				$player2Score = ((int)$player2Score + $questionScore);
@@ -93,12 +97,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 				$newMastery = $currentMastery + 1;
 				setcookie("player2_$category", (string)$newMastery, time() + 31536000);
 				
-				// Check for Category Mastery Bonus
-				if ($newMastery == 3) {
+				$_COOKIE["player2_$category"] = (string)$newMastery;
+				
+				// Check for Category Mastery Bonus (exactly 3 correct in same category)
+				if ($newMastery === 3 && !isset($_COOKIE["player2_{$category}_bonus"])) {
 					$bonusPoints = 25;
 					$player2Score = ((int)$player2Score + $bonusPoints);
 					setcookie('player2Score', (string)$player2Score, time() + 31536000);
 					setcookie('mastery_message', "Player 2 earned a 25-point Category Mastery Bonus for " . ucfirst($category) . "!", time() + 10);
+					// Mark bonus as awarded to prevent multiple triggers
+					setcookie("player2_{$category}_bonus", '1', time() + 31536000);
+					$_COOKIE["player2_{$category}_bonus"] = '1';
 				}
 			}
 		} else {
@@ -182,6 +191,36 @@ $replacements = [
 	'{{PLAYER1_SCORE_CLASS}}' => $player1turn ? 'score-highlight' : '',
 	'{{PLAYER2_SCORE_CLASS}}' => $player1turn ? '' : 'score-highlight'
 ];
+
+$categories = ['space', 'health', 'world', 'tech', 'movies'];
+$categoryNames = ['Space', 'Health', 'World', 'Tech', 'Movies'];
+
+$masteryTracker = '';
+foreach ($categories as $index => $category) {
+	$p1Progress = (int)($_COOKIE["player1_$category"] ?? 0);
+	$p2Progress = (int)($_COOKIE["player2_$category"] ?? 0);
+	$categoryName = $categoryNames[$index];
+	
+	$p1Dots = '';
+	$p2Dots = '';
+	
+	for ($i = 1; $i <= 3; $i++) {
+		$p1Class = $i <= $p1Progress ? 'dot-filled' : 'dot-empty';
+		$p2Class = $i <= $p2Progress ? 'dot-filled' : 'dot-empty';
+		$p1Dots .= "<span class='progress-dot $p1Class'></span>";
+		$p2Dots .= "<span class='progress-dot $p2Class'></span>";
+	}
+	
+	$masteryTracker .= "<div class='mastery-category'>";
+	$masteryTracker .= "<div class='category-name'>$categoryName</div>";
+	$masteryTracker .= "<div class='player-progress'>";
+	$masteryTracker .= "<div class='player1-progress'>P1 $p1Dots</div>";
+	$masteryTracker .= "<div class='player2-progress'>P2 $p2Dots</div>";
+	$masteryTracker .= "</div>";
+	$masteryTracker .= "</div>";
+}
+
+$replacements['{{MASTERY_TRACKER}}'] = $masteryTracker;
 
 $replacements['{{BTN_firstfirst}}'] = renderButton('firstfirst', '$10');
 $replacements['{{BTN_firstsecond}}'] = renderButton('firstsecond', '$10');
