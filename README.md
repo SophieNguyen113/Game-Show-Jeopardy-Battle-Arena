@@ -19,10 +19,10 @@
 
 ## Key Features:
 
-- **Homepage**: Introduces users to various dishes with interactive animations, inviting them to explore each recipe.
-- **Recipe Pages**: Each recipe page will feature a recipe card at the top, followed by detailed step-by-step instructions and an interactive ingredient list.
-- **Step-by-Step Instructions**: Organized using CSS Grid for a clean and easy-to-follow structure.
-- **Interactive Ingredient List**: Allows users to toggle checkboxes next to each ingredient as they gather items.
+- **Homepage**: Introduces the game and starts a new multiplayer session with PHP session setup for player names and number of players.
+- **Interactive Game Board**: Category grid with point values, hover animations, color changes, and real-time display of player turns and scores.
+- **ynamic Question System**: PHP-powered question handling, scoring logic, turn switching, and special effects for correct/incorrect answers, Daily Double, and Final Jeopardy.
+- **Player Scoreboard**: Shows player scores, names, and achievement badges with a responsive CSS layout using flex or grid.
 
 ## Functionalities:
 
