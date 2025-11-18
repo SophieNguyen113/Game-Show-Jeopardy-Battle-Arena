@@ -8,9 +8,9 @@
 
 ## Materials:
 
-- [Proposal]()
-- [Slides]()
-- [Website]()
+- [Proposal](https://drive.google.com/file/d/1ARo9B6s4EK5oAmlrbJBLYeWIp9u1uzw3/view?usp=sharing)
+- [Slides](https://docs.google.com/presentation/d/10DJiXyKL-yZN4KnvNpc_D1dDXVpusAgvLpuBPBJwg_o/edit?usp=sharing)
+- [Website](https://codd.cs.gsu.edu/~nnguyen177/Game-Show-Jeopardy-Battle-Arena/client/about.html)
 - [Demo]()
 
 ## Project Summary:
