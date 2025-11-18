@@ -30,18 +30,18 @@
 
 - **Core Game Features**:
 
-○ **Turn-Based System**: Players take turns selecting questions and answering them.
+    - **Turn-Based System**: Players take turns selecting questions and answering them.
 
-○ **Session-Based Score Tracking**: PHP sessions maintain player scores and category progress.
+    - **Session-Based Score Tracking**: PHP sessions maintain player scores and category progress.
 
-○ **Adaptive Question Difficulty**: Question difficulty scales based on previous correct answers.
+    - **Adaptive Question Difficulty**: Question difficulty scales based on previous correct answers.
 
-○ **Buzzer Simulation**: CSS animation mimics a “buzz-in” effect for player turns.
+    - **Buzzer Simulation**: CSS animation mimics a “buzz-in” effect for player turns.
 
 - **Additional Key Features**:
 
-○ **Daily Double Challenges**: Allows players to wager custom point amounts before answering a high-stakes question.
+    - **Daily Double Challenges**: Allows players to wager custom point amounts before answering a high-stakes question.
 
-○ **Category Mastery Bonuses**: Unlockable achievements when players answer multiple questions correctly within the same category.
+    - **Category Mastery Bonuses**: Unlockable achievements when players answer multiple questions correctly within the same category.
 
-○ **Final Jeopardy Betting**: A final round where players wager portions of their score, testing strategy and knowledge.
+    - **Final Jeopardy Betting**: A final round where players wager portions of their score, testing strategy and knowledge.
