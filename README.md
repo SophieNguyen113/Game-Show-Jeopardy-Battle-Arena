@@ -15,6 +15,8 @@
 
 ## Project Summary:
 
+- The project focuses on building an interactive Jeopardy-style game called “Jeopardy! Battle Arena”, where 2 players compete in real-time rounds of questions across various categories. 
+- Each round will feature strategic betting, adaptive difficulty, and category mastery rewards.
 
 
 ## Key Features:
@@ -26,6 +28,13 @@
 
 ## Functionalities:
 
-- **Recipe Card Animation**: Cards will flip, scale, or slide upon hover or click, providing engaging visual feedback.
-- **Ingredient Highlighting**: Ingredients will be highlighted with a hover effect to enhance the user experience.
-- **Step-by-Step Instructions**: Cleanly organized and interactive, guiding users through the recipe process.
+- **Core Game Features**:
+○ **Turn-Based System**: Players take turns selecting questions and answering them.
+○ **Session-Based Score Tracking**: PHP sessions maintain player scores and category progress.
+○ **Adaptive Question Difficulty**: Question difficulty scales based on previous correct answers.
+○ **Buzzer Simulation**: CSS animation mimics a “buzz-in” effect for player turns.
+
+- **Additional Key Features:
+○ **Daily Double Challenges**: Allows players to wager custom point amounts before answering a high-stakes question.
+○ **Category Mastery Bonuses**: Unlockable achievements when players answer multiple questions correctly within the same category.
+○ **Final Jeopardy Betting**: A final round where players wager portions of their score, testing strategy and knowledge.
