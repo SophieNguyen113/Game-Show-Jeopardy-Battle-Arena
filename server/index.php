@@ -124,6 +124,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 			setcookie('player2turn', $p1turn ? '0' : '1', time() + 31536000);
 			$player1turn = $p1turn;
 		}
+
+		if ($questionCount >= 25) {
+			$p1 = (int)$player1Score;
+			$p2 = (int)$player2Score;
+			if ($p1 > $p2) {
+				header('Location: ../client/winner1.html');
+				exit;
+			} elseif ($p2 > $p1) {
+				header('Location: ../client/winner2.html');
+				exit;
+			} else {
+				header('Location: ../client/tie.html');
+				exit;
+			}
+		}
 	}
 
 	$buttonNames = [
