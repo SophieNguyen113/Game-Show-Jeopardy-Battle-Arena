@@ -54,6 +54,30 @@ if (!isset($_COOKIE['player1turn'])) {
 	setcookie('player2turn', $player1turn ? '0' : '1', time() + 31536000);
 }
 
+if ($questionCount >= 25) {
+	if (!$finalStarted) {
+		setcookie('final_started', '1', time() + 31536000);
+		header('Location: finalJeopardyWager.php');
+		exit;
+	} elseif ($finalCompleted) {
+		$p1 = (int)$player1Score;
+		$p2 = (int)$player2Score;
+		if ($p1 > $p2) {
+			header('Location: ../client/winner1.html');
+			exit;
+		} elseif ($p2 > $p1) {
+			header('Location: ../client/winner2.html');
+			exit;
+		} else {
+			header('Location: ../client/tie.html');
+			exit;
+		}
+	} else {
+		header('Location: finalJeopardyWager.php');
+		exit;
+	}
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	if (isset($_POST['answerButton'])) {
 		$newCount = $questionCount + 1;
@@ -128,7 +152,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		}
 
 		if ($questionCount >= 25) {
-			if (!$finalStarted && !$finalCompleted) {
+			if (!$finalStarted) {
 				setcookie('final_started', '1', time() + 31536000);
 				header('Location: finalJeopardyWager.php');
 				exit;
@@ -165,29 +189,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 			header('Location: questionPage.php');
 			exit;
 		}
-	}
-}
-
-$questionCount = isset($_COOKIE['questionCount']) ? (int)$_COOKIE['questionCount'] : $questionCount;
-if ($questionCount >= 25) {
-	if (!$finalStarted && !$finalCompleted) {
-		setcookie('final_started', '1', time() + 31536000);
-		header('Location: finalJeopardyWager.php');
-		exit;
-	} elseif ($finalCompleted) {
-		if ((int)$player1Score > (int)$player2Score) {
-			header('Location: ../client/winner1.html');
-			exit;
-		} elseif ((int)$player2Score > (int)$player1Score) {
-			header('Location: ../client/winner2.html');
-			exit;
-		} else {
-			header('Location: ../client/tie.html');
-			exit;
-		}
-	} else {
-		header('Location: finalJeopardyWager.php');
-		exit;
 	}
 }
 

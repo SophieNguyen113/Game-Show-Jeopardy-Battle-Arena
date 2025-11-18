@@ -37,6 +37,11 @@
     setcookie('wager_max', '0', time() - 3600);
     setcookie('wager_current_score', '0', time() - 3600);
     
+    setcookie('final_started', '', time() - 3600);
+    setcookie('final_completed', '', time() - 3600);
+    setcookie('final_wager_p1', '', time() - 3600);
+    setcookie('final_wager_p2', '', time() - 3600);
+    
     setcookie("firstfirst", FALSE, time() + 31536000);
     setcookie("firstsecond", FALSE, time() + 31536000);
     setcookie("firstthird", FALSE, time() + 31536000);
