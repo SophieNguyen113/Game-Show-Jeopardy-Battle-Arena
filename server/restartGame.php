@@ -6,7 +6,6 @@
     setcookie("player2turn", FALSE, time() + 31536000);
     setcookie("questionCount", 0 , time() + 31536000);
     
-    // Reset category mastery tracking
     setcookie('player1_space', '0', time() + 31536000);
     setcookie('player1_health', '0', time() + 31536000);
     setcookie('player1_world', '0', time() + 31536000);
@@ -17,6 +16,17 @@
     setcookie('player2_world', '0', time() + 31536000);
     setcookie('player2_tech', '0', time() + 31536000);
     setcookie('player2_movies', '0', time() + 31536000);
+    
+    setcookie('player1_space_bonus', '', time() - 3600);
+    setcookie('player1_health_bonus', '', time() - 3600);
+    setcookie('player1_world_bonus', '', time() - 3600);
+    setcookie('player1_tech_bonus', '', time() - 3600);
+    setcookie('player1_movies_bonus', '', time() - 3600);
+    setcookie('player2_space_bonus', '', time() - 3600);
+    setcookie('player2_health_bonus', '', time() - 3600);
+    setcookie('player2_world_bonus', '', time() - 3600);
+    setcookie('player2_tech_bonus', '', time() - 3600);
+    setcookie('player2_movies_bonus', '', time() - 3600);
     
     // Reset Daily Double tracking
     setcookie('daily_double_1', '', time() - 3600);

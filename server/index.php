@@ -7,16 +7,15 @@ $player2Score = $_COOKIE['player2Score'] ?? '0';
 $questionCount = isset($_COOKIE['questionCount']) ? (int)$_COOKIE['questionCount'] : 0;
 $player1turn = isset($_COOKIE['player1turn']) ? filter_var($_COOKIE['player1turn'], FILTER_VALIDATE_BOOLEAN) : true;
 
-// Initialize category mastery tracking
 $categories_init = ['space', 'health', 'world', 'tech', 'movies'];
 foreach ($categories_init as $cat) {
 	if (!isset($_COOKIE["player1_$cat"])) {
 		setcookie("player1_$cat", '0', time() + 31536000);
-		$_COOKIE["player1_$cat"] = '0'; // Make available immediately
+		$_COOKIE["player1_$cat"] = '0'; 
 	}
 	if (!isset($_COOKIE["player2_$cat"])) {
 		setcookie("player2_$cat", '0', time() + 31536000);
-		$_COOKIE["player2_$cat"] = '0'; // Make available immediately
+		$_COOKIE["player2_$cat"] = '0';
 	}
 }
 
@@ -66,25 +65,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		if ($correct) {
 			$p1turn = isset($_COOKIE['player1turn']) ? filter_var($_COOKIE['player1turn'], FILTER_VALIDATE_BOOLEAN) : $player1turn;
 			
-			// Update score - ADD points for correct answer
 			if ($p1turn) {
 				$player1Score = ((int)$player1Score + $questionScore);
 				setcookie('player1Score', (string)$player1Score, time() + 31536000);
-				
-				// Update category mastery
+			
 				$currentMastery = (int)($_COOKIE["player1_$category"] ?? 0);
 				$newMastery = $currentMastery + 1;
 				setcookie("player1_$category", (string)$newMastery, time() + 31536000);
 				
 				$_COOKIE["player1_$category"] = (string)$newMastery;
 				
-				// Check for Category Mastery Bonus (exactly 3 correct in same category)
 				if ($newMastery === 3 && !isset($_COOKIE["player1_{$category}_bonus"])) {
 					$bonusPoints = 25;
 					$player1Score = ((int)$player1Score + $bonusPoints);
 					setcookie('player1Score', (string)$player1Score, time() + 31536000);
 					setcookie('mastery_message', "Player 1 earned a 25-point Category Mastery Bonus for " . ucfirst($category) . "!", time() + 10);
-					// Mark bonus as awarded to prevent multiple triggers
 					setcookie("player1_{$category}_bonus", '1', time() + 31536000);
 					$_COOKIE["player1_{$category}_bonus"] = '1';
 				}
@@ -92,20 +87,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 				$player2Score = ((int)$player2Score + $questionScore);
 				setcookie('player2Score', (string)$player2Score, time() + 31536000);
 				
-				// Update category mastery
 				$currentMastery = (int)($_COOKIE["player2_$category"] ?? 0);
 				$newMastery = $currentMastery + 1;
 				setcookie("player2_$category", (string)$newMastery, time() + 31536000);
 				
 				$_COOKIE["player2_$category"] = (string)$newMastery;
 				
-				// Check for Category Mastery Bonus (exactly 3 correct in same category)
 				if ($newMastery === 3 && !isset($_COOKIE["player2_{$category}_bonus"])) {
 					$bonusPoints = 25;
 					$player2Score = ((int)$player2Score + $bonusPoints);
 					setcookie('player2Score', (string)$player2Score, time() + 31536000);
 					setcookie('mastery_message', "Player 2 earned a 25-point Category Mastery Bonus for " . ucfirst($category) . "!", time() + 10);
-					// Mark bonus as awarded to prevent multiple triggers
 					setcookie("player2_{$category}_bonus", '1', time() + 31536000);
 					$_COOKIE["player2_{$category}_bonus"] = '1';
 				}
@@ -266,7 +258,6 @@ if (!file_exists($templatePath)) {
 $content = file_get_contents($templatePath);
 $output = strtr($content, $replacements);
 
-// Insert mastery message after the score container
 $output = str_replace('<div id="score_container_main">', '<div id="score_container_main">' . $masteryMessage, $output);
 
 header('Content-Type: text/html; charset=utf-8');
