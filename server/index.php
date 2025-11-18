@@ -78,7 +78,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 				
 				$_COOKIE["player1_$category"] = (string)$newMastery;
 				
-				if ($newMastery === 3 && !isset($_COOKIE["player1_{$category}_bonus"])) {
+				if ($newMastery === 2 && !isset($_COOKIE["player1_{$category}_bonus"])) {
 					$bonusPoints = 25;
 					$player1Score = ((int)$player1Score + $bonusPoints);
 					setcookie('player1Score', (string)$player1Score, time() + 31536000);
@@ -96,7 +96,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 				
 				$_COOKIE["player2_$category"] = (string)$newMastery;
 				
-				if ($newMastery === 3 && !isset($_COOKIE["player2_{$category}_bonus"])) {
+				if ($newMastery === 2 && !isset($_COOKIE["player2_{$category}_bonus"])) {
 					$bonusPoints = 25;
 					$player2Score = ((int)$player2Score + $bonusPoints);
 					setcookie('player2Score', (string)$player2Score, time() + 31536000);
@@ -231,17 +231,17 @@ foreach ($categories as $index => $category) {
 	$p1Progress = (int)($_COOKIE["player1_$category"] ?? 0);
 	$p2Progress = (int)($_COOKIE["player2_$category"] ?? 0);
 	$categoryName = $categoryNames[$index];
-	
+
 	$p1Dots = '';
 	$p2Dots = '';
-	
+
 	for ($i = 1; $i <= 3; $i++) {
 		$p1Class = $i <= $p1Progress ? 'dot-filled' : 'dot-empty';
 		$p2Class = $i <= $p2Progress ? 'dot-filled' : 'dot-empty';
 		$p1Dots .= "<span class='progress-dot $p1Class'></span>";
 		$p2Dots .= "<span class='progress-dot $p2Class'></span>";
 	}
-	
+
 	$masteryTracker .= "<div class='mastery-category'>";
 	$masteryTracker .= "<div class='category-name'>$categoryName</div>";
 	$masteryTracker .= "<div class='player-progress'>";
