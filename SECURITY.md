@@ -2,11 +2,11 @@
 
 ## Scope
 
-This security policy applies to all aspects of the Interactive Recipe Microsite, including but not limited to the codebase, documentation, and website.
+This security policy applies to all aspects of the Game Show — “Jeopardy! Battle Arena”, including but not limited to the codebase, documentation, and website.
 
 ## Reporting a Vulnerability
 
-If users discover a security vulnerability in this project, please report it by [creating an issue](https://github.com/SophieNguyen113/Interactive-Recipe-Microsite/issues) in the issue tracker. Include as much detail as possible about the vulnerability and steps to reproduce it.
+If users discover a security vulnerability in this project, please report it by [creating an issue](https://github.com/SophieNguyen113/Game-Show-Jeopardy-Battle-Arena/issues) in the issue tracker. Include as much detail as possible about the vulnerability and steps to reproduce it.
 
 ### Expectations
 
