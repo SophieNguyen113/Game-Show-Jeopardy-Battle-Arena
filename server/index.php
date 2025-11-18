@@ -5,6 +5,8 @@ session_start();
 $player1Score = $_COOKIE['player1Score'] ?? '0';
 $player2Score = $_COOKIE['player2Score'] ?? '0';
 $questionCount = isset($_COOKIE['questionCount']) ? (int)$_COOKIE['questionCount'] : 0;
+$finalStarted = isset($_COOKIE['final_started']) && $_COOKIE['final_started'] === '1';
+$finalCompleted = isset($_COOKIE['final_completed']) && $_COOKIE['final_completed'] === '1';
 $player1turn = isset($_COOKIE['player1turn']) ? filter_var($_COOKIE['player1turn'], FILTER_VALIDATE_BOOLEAN) : true;
 
 $categories_init = ['space', 'health', 'world', 'tech', 'movies'];
@@ -126,16 +128,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		}
 
 		if ($questionCount >= 25) {
-			$p1 = (int)$player1Score;
-			$p2 = (int)$player2Score;
-			if ($p1 > $p2) {
-				header('Location: ../client/winner1.html');
+			if (!$finalStarted && !$finalCompleted) {
+				setcookie('final_started', '1', time() + 31536000);
+				header('Location: finalJeopardyWager.php');
 				exit;
-			} elseif ($p2 > $p1) {
-				header('Location: ../client/winner2.html');
-				exit;
+			} else if ($finalCompleted) {
+				$p1 = (int)$player1Score;
+				$p2 = (int)$player2Score;
+				if ($p1 > $p2) {
+					header('Location: ../client/winner1.html');
+					exit;
+				} elseif ($p2 > $p1) {
+					header('Location: ../client/winner2.html');
+					exit;
+				} else {
+					header('Location: ../client/tie.html');
+					exit;
+				}
 			} else {
-				header('Location: ../client/tie.html');
+				header('Location: finalJeopardyWager.php');
 				exit;
 			}
 		}
@@ -159,11 +170,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 $questionCount = isset($_COOKIE['questionCount']) ? (int)$_COOKIE['questionCount'] : $questionCount;
 if ($questionCount >= 25) {
-	if ((int)$player1Score > (int)$player2Score) {
-		header('Location: ../client/winner1.html');
+	if (!$finalStarted && !$finalCompleted) {
+		setcookie('final_started', '1', time() + 31536000);
+		header('Location: finalJeopardyWager.php');
 		exit;
+	} elseif ($finalCompleted) {
+		if ((int)$player1Score > (int)$player2Score) {
+			header('Location: ../client/winner1.html');
+			exit;
+		} elseif ((int)$player2Score > (int)$player1Score) {
+			header('Location: ../client/winner2.html');
+			exit;
+		} else {
+			header('Location: ../client/tie.html');
+			exit;
+		}
 	} else {
-		header('Location: ../client/winner2.html');
+		header('Location: finalJeopardyWager.php');
 		exit;
 	}
 }

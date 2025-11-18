@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Game Show: Jeopardy! Battle Arena - Final Jeopardy Page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link href="../styles/style.css" rel="stylesheet">
+</head>
+<body>
+<header>
+    <h1 class="center" id="h1">Game Show: Jeopardy! Battle Arena</h1>
+</header>
+
+<main class="about-container">
+    <div id="score_container_main">
+        <div>
+            <div class="player-col left huge">
+                <img src="../images/player.png" width="50px" height="50px">Player 1
+            </div>
+            <div class="player-col right huge">
+                <img src="../images/player.png" width="50px" height="50px">
+                <?= $_COOKIE["user_name"] ?? "Player 2" ?>
+            </div>
+        </div>
+
+        <div>
+            <div class="player-col left large">
+                <?= $_COOKIE["player1Score"] ?? 0 ?>
+            </div>
+            <div class="player-col right large">
+                <?= $_COOKIE["player2Score"] ?? 0 ?>
+            </div>
+        </div>
+    </div>
+
+    <div class="daily-double-banner">FINAL JEOPARDY!</div>
+
+    <div id="score_container_main">
+        <form action="../server/finalJeopardy.php" method="post">
+            <div class="text-center">
+                <div class="question-box">
+                    <h2><?= isset($data["question"]) ? $data["question"] : '' ?></h2>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h4>Player 1 Answer</h4>
+                            <label class="answer-option">
+                                <input type="radio" name="p1_selectedAnswer" value="firstOption" required>
+                                <span class="answer-text"><?= isset($data["firstOption"]) ? $data["firstOption"] : '' ?></span>
+                            </label>
+                            <label class="answer-option">
+                                <input type="radio" name="p1_selectedAnswer" value="secondOption">
+                                <span class="answer-text"><?= isset($data["secondOption"]) ? $data["secondOption"] : '' ?></span>
+                            </label>
+                            <label class="answer-option">
+                                <input type="radio" name="p1_selectedAnswer" value="thirdOption">
+                                <span class="answer-text"><?= isset($data["thirdOption"]) ? $data["thirdOption"] : '' ?></span>
+                            </label>
+                            <label class="answer-option">
+                                <input type="radio" name="p1_selectedAnswer" value="fourthOption">
+                                <span class="answer-text"><?= isset($data["fourthOption"]) ? $data["fourthOption"] : '' ?></span>
+                            </label>
+                        </div>
+                        <div class="col-md-6">
+                            <h4>Player 2 Answer</h4>
+                            <label class="answer-option">
+                                <input type="radio" name="p2_selectedAnswer" value="firstOption" required>
+                                <span class="answer-text"><?= isset($data["firstOption"]) ? $data["firstOption"] : '' ?></span>
+                            </label>
+                            <label class="answer-option">
+                                <input type="radio" name="p2_selectedAnswer" value="secondOption">
+                                <span class="answer-text"><?= isset($data["secondOption"]) ? $data["secondOption"] : '' ?></span>
+                            </label>
+                            <label class="answer-option">
+                                <input type="radio" name="p2_selectedAnswer" value="thirdOption">
+                                <span class="answer-text"><?= isset($data["thirdOption"]) ? $data["thirdOption"] : '' ?></span>
+                            </label>
+                            <label class="answer-option">
+                                <input type="radio" name="p2_selectedAnswer" value="fourthOption">
+                                <span class="answer-text"><?= isset($data["fourthOption"]) ? $data["fourthOption"] : '' ?></span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <input class="submit-btn" type="submit" name="final_submit" value="Reveal Results">
+                </div>
+            </div>
+        </form>
+    </div>
+</main>
+
+<footer class="text-center site-footer">
+    <div id="copyright">
+        <p id="htmlvalidator">
+            <a href="http://validator.w3.org/check/referer"
+            ><img
+                src="../images/validatedHTML.png"
+                alt="Valid XHTML 1.0!"
+                height="31"
+                width="88"
+            /></a>
+        </p>
+        <p id="cssvalidator">
+            <a href="http://jigsaw.w3.org/css-validator/check/referer">
+            <img
+                src="../images/validatedCSS.png"
+                alt="Valid CSS!"
+                height="31"
+                width="88"
+            />
+            </a>
+        </p>
+
+        <p>Copyright &copy; Fall 2025</p>
+        <p>Georgia State University - Web Programming</p>
+        <p>Sophie Nguyen - Cristofer Herrera-Mejia - Karni Rathod</p>
+    </div>
+</footer>
+</body>
+</html>
