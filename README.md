@@ -34,7 +34,7 @@
 ○ **Adaptive Question Difficulty**: Question difficulty scales based on previous correct answers.
 ○ **Buzzer Simulation**: CSS animation mimics a “buzz-in” effect for player turns.
 
-- **Additional Key Features:
+- **Additional Key Features**:
 ○ **Daily Double Challenges**: Allows players to wager custom point amounts before answering a high-stakes question.
 ○ **Category Mastery Bonuses**: Unlockable achievements when players answer multiple questions correctly within the same category.
 ○ **Final Jeopardy Betting**: A final round where players wager portions of their score, testing strategy and knowledge.
