@@ -56,6 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	if (isset($_POST['answerButton'])) {
 		$newCount = $questionCount + 1;
 		setcookie('questionCount', $newCount, time() + 31536000);
+		$questionCount = $newCount;
 
 		$correct = ($_POST['correctAnswer'] ?? '') === ($_POST['selectedAnswer'] ?? '');
 		$questionScore = (int)($_POST['questionScore'] ?? 0);
