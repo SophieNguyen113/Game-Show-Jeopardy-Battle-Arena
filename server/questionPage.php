@@ -68,7 +68,7 @@ elseif (isset($_POST["firstthird"])) {
 } elseif (isset($_POST["thirdthird"])) {
     $data = setQuestion4("Which African country has the largest population?", "thirdOption", "Kenya", "Ethiopia", "Nigeria", "Egypt", 30, "thirdthird", "world");
 } elseif (isset($_POST["fourththird"])) {
-    $data = setQuestion4("What is the longest river in the world?", "firstOption", "Amazon", "Nile", "Yangtze", "Mississippi", 40, "fourththird", "world");
+    $data = setQuestion4("What is the longest river in the world?", "secondOption", "Amazon", "Nile", "Yangtze", "Mississippi", 40, "fourththird", "world");
 } elseif (isset($_POST["fifththird"])) {
     $data = setQuestion4("Which country is landlocked?", "fourthOption", "Thailand", "Vietnam", "Malaysia", "Bolivia", 50, "fifththird", "world");
 }
